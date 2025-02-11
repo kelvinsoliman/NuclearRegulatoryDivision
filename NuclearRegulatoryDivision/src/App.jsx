@@ -8,6 +8,7 @@ import VisitUs from "./components/Homepage/VisitUs";
 import Regulations from "./components/Regulations";
 import NuclearRegulatoryDiv from "./components/NuclearRegulatoryDiv";
 import Lres from "./components/LRES/Lres";
+import Licensing from "./components/LRES/Licensing";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <Route path="/regulations" element={<Regulations />} />
           <Route path="/nrd" element={<NuclearRegulatoryDiv />} />
           <Route path="/lres" element={<Lres />} />
+          <Route path="/Licensing" element={<Licensing />} />
+
         </Routes>
       </div>
     </Router>

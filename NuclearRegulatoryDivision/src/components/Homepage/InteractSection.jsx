@@ -3,10 +3,21 @@ import "swiper/css";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS CSS
 
 const InteractSection = () => {
   const [showRegulations, setShowRegulations] = useState(false);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: true, // Whether animation should happen only once
+    });
+  }, []);
+
+  // Initialize Swiper
   useEffect(() => {
     setTimeout(() => {
       new Swiper(".mySwiper", {
@@ -48,11 +59,6 @@ const InteractSection = () => {
       link: "/lres",
     },
     {
-      img: "src/assets/guide.png",
-      text: "Inspection and Enforcement Section (IES)",
-      link: "regulatoryguides.php",
-    },
-    {
       img: "src/assets/regulation (1).png",
       text: "Nuclear Safeguards and Security Section (NSSS)",
       link: "bulletin.php",
@@ -66,14 +72,20 @@ const InteractSection = () => {
 
   return (
     <section className="text-gray-700 body-font mt-10">
-      {/* <div className="flex justify-center text-3xl font-bold text-gray-800 text-center">
-        Interact?
-      </div> */}
       <div className="container px-10 py-12 mx-auto">
-        <div className="swiper mySwiper">
+        {/* Animate the Swiper container */}
+        <div
+          className="swiper mySwiper"
+          data-aos="fade-up" // Add AOS animation
+        >
           <div className="swiper-wrapper">
             {slides.map((slide, index) => (
-              <div key={index} className="swiper-slide">
+              <div
+                key={index}
+                className="swiper-slide"
+                data-aos="fade-up" // Add AOS animation to each slide
+                data-aos-delay={index * 100} // Stagger animations
+              >
                 <Link to={slide.link} className="block text-center">
                   <div className="px-4 py-6 transform transition duration-500 hover:scale-110">
                     <div className="flex justify-center">
@@ -98,7 +110,10 @@ const InteractSection = () => {
 
         {/* Conditionally render the Regulations component */}
         {showRegulations && (
-          <div className="mt-10 p-6 border rounded-lg shadow-lg bg-black">
+          <div
+            className="mt-10 p-6 border rounded-lg shadow-lg bg-black"
+            data-aos="fade-up" // Add AOS animation
+          >
             <button
               onClick={() => setShowRegulations(false)}
               className="mb-4 text-red-500 hover:text-red-700"

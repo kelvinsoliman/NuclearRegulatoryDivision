@@ -6,10 +6,9 @@ import LresNavbar from "./LresNavbar";
 import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png"
+import logo4 from "../../assets/AEW52_Thumbnail.png";
 
-
-const Lres = () => {
+const Licensing = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
@@ -70,10 +69,26 @@ const Lres = () => {
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
           data-aos="fade-right"
         >
-          <img src={logo1} alt="Logo 1" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo2} alt="Logo 2" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo3} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo4} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
+          <img
+            src={logo1}
+            alt="Logo 1"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo2}
+            alt="Logo 2"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo3}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo4}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
 
           {/* Add more logos as needed */}
         </div>
@@ -81,12 +96,14 @@ const Lres = () => {
         {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
           <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left">
-            About LRES
+            Licensing Categories
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            The Licensing, Review, and Evaluation Section (LRES) is responsible
-            for processing applications, assessing nuclear safety risks, and
-            ensuring regulatory compliance.
+            Licensing categories are used to classify different types of
+            licenses based on the nature of activities, materials, or industries
+            being regulated. Their primary purpose is to ensure that
+            organizations or individuals comply with specific safety, security,
+            and operational standards relevant to their field.
           </p>
 
           {/* Responsibilities Section */}
@@ -143,4 +160,4 @@ const Lres = () => {
   );
 };
 
-export default Lres;
+export default Licensing;
