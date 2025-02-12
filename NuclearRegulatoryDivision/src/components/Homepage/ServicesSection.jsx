@@ -5,9 +5,9 @@ import InsoThumbnail from "../../assets/INSO_Thumbnail.png";
 import { Link } from "react-router-dom";
 const ServicesSection = () => {
   return (
-    <section className="py-10" id="services">
+    <section className="py-10 relative z-0 " id="services">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center ">
           About Nuclear Regulatory Division
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -19,7 +19,8 @@ const ServicesSection = () => {
             <img
               src={BPLogo}
               alt="wheat flour grinding"
-              className="w-full h-64 object-cover transition duration-300 hover:opacity-80"
+              className="w-full h-64 object-cover  transition duration-300 hover:opacity-80"
+              
             />
             <div className="p-6 text-center">
               <h3 className="text-xl font-medium text-gray-800 mb-2 transition duration-300 hover:text-teal-400">

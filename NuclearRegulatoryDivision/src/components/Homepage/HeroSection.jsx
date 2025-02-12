@@ -18,11 +18,11 @@ const HeroSection = () => {
 
   return (
     <div
-      className="relative w-full h-[400px] overflow-hidden bg-cover bg-center transition-all duration-1000 ease-in-out"
+      className="relative w-full  z-[-999] h-[400px] overflow-hidden bg-cover bg-center transition-all duration-1000 ease-in-out"
       style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* Text Content */}
       <div className="absolute inset-9 flex flex-col md:flex-row m-auto">

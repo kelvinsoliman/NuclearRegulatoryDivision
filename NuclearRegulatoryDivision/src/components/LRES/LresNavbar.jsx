@@ -1,198 +1,168 @@
 import { useState } from "react";
+import logo from "../../assets/PNRI_Logo.jpg";
 import { Link } from "react-router-dom";
 
-const LresNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu
-  const [openDropdown, setOpenDropdown] = useState(null); // For main dropdowns
-  const [openSubmenu, setOpenSubmenu] = useState(null); // For nested submenus
-
-  // Toggle main dropdown
-  const toggleDropdown = (menu) => {
-    if (openDropdown === menu) {
-      setOpenDropdown(null); // Close if already open
-      setOpenSubmenu(null); // Close submenu
-    } else {
-      setOpenDropdown(menu); // Open the clicked dropdown
-      setOpenSubmenu(null); // Reset submenu
-    }
-  };
-
-  // Toggle nested submenu
-  const toggleSubmenu = (submenu) => {
-    if (openSubmenu === submenu) {
-      setOpenSubmenu(null); // Close if already open
-    } else {
-      setOpenSubmenu(submenu); // Open the clicked submenu
-    }
-  };
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDoubleDropdownOpen, setIsDoubleDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-xl sticky w-full  z-50 border-b border-gray-300 px-10 flex justify-end items-center">
-      <div className="container mx-auto flex justify-end md:justify-between items-center py-4 px-6">
-        <h1 className="text-2xl font-bold text-blue-600 hidden md:block">
-          Licensing, Review and Evaluation
-        </h1>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-          {/* Licensing Dropdown */}
-          <div className="relative">
-            <Link
-              to="/licensing"
-              onMouseOver={() => toggleDropdown("licensing")}
-              className="text-gray-700 hover:text-blue-500 font-medium"
-            >
-              Licensing
-            </Link>
-            {openDropdown === "licensing" && (
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md py-2">
-                <h3 className="px-4 py-2 text-gray-800 font-semibold border-b">
-                  Licensing Categories
-                </h3>
-                <p className="px-4 py-2 text-gray-600 text-sm">
-                  Information about nuclear licensing categories and
-                  requirements.
-                </p>
-                {/* Submenu */}
-                <div
-                  className="relative px-4 py-2 cursor-pointer hover:text-blue-500"
-                  onClick={() => toggleSubmenu("licensing-sub")}
-                >
-                  More Licensing Info
-                  {openSubmenu === "licensing-sub" && (
-                    <div className="absolute left-full top-0 mt-2 w-64 bg-white shadow-lg rounded-md py-2">
-                      <h3 className="px-4 py-2 text-gray-800 font-semibold border-b">
-                        Additional Licensing
-                      </h3>
-                      <p className="px-4 py-2 text-gray-600 text-sm">
-                        More details on licensing policies and approvals.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Review & Evaluation Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => toggleDropdown("review")}
-              className="text-gray-700 hover:text-blue-500 font-medium"
-            >
-              Review & Evaluation
-            </button>
-            {openDropdown === "review" && (
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md py-2">
-                <h3 className="px-4 py-2 text-gray-800 font-semibold border-b">
-                  Evaluation Process
-                </h3>
-                <p className="px-4 py-2 text-gray-600 text-sm">
-                  Detailed review and assessment procedures for regulatory
-                  compliance.
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Education and Training Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => toggleDropdown("education")}
-              className="text-gray-700 hover:text-blue-500 font-medium"
-            >
-              Education and Training
-            </button>
-            {openDropdown === "education" && (
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md py-2">
-                <ul className="py-2 text-gray-600">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Nuclear Training Courses
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    NST Education Program
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    On-the-Job Training Opportunities
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Non-Destructive Testing Courses
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Frequently Asked Questions
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {/* Contact Us Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => toggleDropdown("contact")}
-              className="text-gray-700 hover:text-blue-500 font-medium"
-            >
-              Contact Us
-            </button>
-            {openDropdown === "contact" && (
-              <div className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md py-2">
-                <h3 className="px-4 py-2 text-gray-800 font-semibold border-b">
-                  Get in Touch
-                </h3>
-                <p className="px-4 py-2 text-gray-600 text-sm">
-                  Email: support@nrd.gov.ph <br /> Phone: (123) 456-7890
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Menu Button */}
+    <nav className="bg-white border-gray-200 shadow-xl">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" className="flex items-center justify-between space-x-3 rtl:space-x-reverse ">
+          <img src={logo} className="h-10 w-10 rounded-full" alt="PNRI Logo" />
+          <span className="hidden lg:block self-center text-xl lg:text-2xl font-semibold whitespace-nowrap text-black ">
+            Licensing, Review & Evaluation
+          </span>
+        </a>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          Menu
+          <span className="sr-only">Open main menu</span>
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M1 1h15M1 7h15M1 13h15"
+            />
+          </svg>
         </button>
-      </div>
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } w-full md:block md:w-auto`}
+        >
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <Link
+                to="/lres"
+                className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
+              >
+                Home
+              </Link>
+            </li>
 
-      {/* Mobile Dropdown Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-md py-2 absolute w-full left-0 top-16 z-50">
-          <div className="px-6 py-2">
-            <h3 className="text-gray-800 font-semibold">Licensing</h3>
-            <p className="text-gray-600 text-sm">
-              Nuclear licensing categories and requirements.
-            </p>
-          </div>
-          <div className="px-6 py-2">
-            <h3 className="text-gray-800 font-semibold">Review & Evaluation</h3>
-            <p className="text-gray-600 text-sm">
-              Assessment procedures for regulatory compliance.
-            </p>
-          </div>
-          <div className="px-6 py-2">
-            <h3 className="text-gray-800 font-semibold">
-              Education and Training
-            </h3>
-            <ul className="text-gray-600 text-sm">
-              <li>Nuclear Training Courses</li>
-              <li>NST Education Program</li>
-              <li>On-the-Job Training Opportunities</li>
-              <li>Non-Destructive Testing Courses</li>
-              <li>Frequently Asked Questions</li>
-            </ul>
-          </div>
-          <div className="px-6 py-2">
-            <h3 className="text-gray-800 font-semibold">Contact Us</h3>
-            <p className="text-gray-600 text-sm">
-              Email: support@nrd.gov.ph | Phone: (123) 456-7890
-            </p>
-          </div>
+            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <Link
+                to="/licensing"
+                className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0"
+              >
+                Licensing
+              </Link>
+            </li>
+            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto  md:dark:hover:text-blue-500 dark:focus:text-white"
+              >
+                Dropdown
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Dashboard
+                      </a>
+                    </li>
+                    <li className="relative">
+                      <button
+                        onClick={() =>
+                          setIsDoubleDropdownOpen(!isDoubleDropdownOpen)
+                        }
+                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        More
+                        <svg
+                          className="w-2.5 h-2.5 ms-2.5"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 10 6"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m1 1 4 4 4-4"
+                          />
+                        </svg>
+                      </button>
+                      {isDoubleDropdownOpen && (
+                        <ul className="absolute left-full top-0 z-10 w-44 bg-white dark:bg-gray-700 shadow-md rounded-lg py-2">
+                          <li>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            >
+                              Overview
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            >
+                              My Downloads
+                            </a>
+                          </li>
+                        </ul>
+                      )}
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 hover:rounded-xl  dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Earnings
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </li>
+            <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
+              <a
+                href="#"
+                className="block py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Services
+              </a>
+            </li>
+          </ul>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
 
-export default LresNavbar;
+export default Navbar;

@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
+  const [nav, setNav] = useState(true);
 
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out", once: true });
@@ -17,93 +17,53 @@ const Navbar = () => {
   };
 
   return (
-    <div
-      className="w-full h-24 px-4 mx-auto flex items-center justify-between bg-gray-900 text-white relative z-[100]"
-      data-aos="fade-down"
-    >
-      <div className="flex items-center justify-center gap-3 relative z-50">
-        <img
-          src={logo}
-          alt="Logo"
-          className="h-10 w-10 rounded-full"
-          data-aos="fade-right"
-        />
-        <h1 className="font-bold text-2xl hidden md:block" data-aos="fade-left">
+    <div className=" w-full mx-auto h-24 px-4 flex items-center justify-between  bg-slate-950  text-white">
+      <div className="flex items-center justify-center gap-2.5">
+        <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
+        <h1 className="font-bold text-white text-2xl hidden md:block">
           Nuclear Regulatory Division
         </h1>
       </div>
 
-      {/* Desktop Menu */}
-      <ul className="hidden md:flex gap-1">
-        <li
-          className="p-4 hover:bg-gray-500 rounded-md ease-in-out duration-500"
-          data-aos="fade-up"
-        >
+      <ul className="hidden md:flex gap-2.5">
+        <li className="p-4 hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <Link to="/">Home</Link>
         </li>
-        <li
-          className="p-4 hover:bg-gray-500 rounded-md ease-in-out duration-500"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
+        <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <a href="#About">About</a>
         </li>
-        <li
-          className="p-4 hover:bg-gray-500 rounded-md ease-in-out duration-500"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
+        <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <a href="#">Members</a>
         </li>
-        <li
-          className="p-4 hover:bg-gray-500 rounded-md ease-in-out duration-500"
-          data-aos="fade-up"
-          data-aos-delay="600"
-        >
+        <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <a href="#">Contact</a>
         </li>
       </ul>
 
-      {/* Mobile Menu Button */}
-      <div onClick={toggleNav} className="block md:hidden cursor-pointer">
-        {nav ? <FaX size={30} /> : <FaAlignRight size={30} />}
+      <div onClick={toggleNav} className="block md:hidden text-white">
+        {!nav ? <FaX size={30} /> : <FaAlignRight size={30} />}
+        {console.log(!nav)}
       </div>
 
-      {/* Mobile Side Nav */}
       <div
-        className={`fixed left-0 top-0 bg-slate-950 h-full w-[60%] ease-in-out duration-500 md:hidden z-[999] ${
-          nav ? "translate-x-0" : "-translate-x-full"
-        }`}
-        //  data-aos={nav ? "fade-right" : ""}
+        className={
+          !nav
+            ? "fixed left-0 top-0 bg-slate-950 h-full w-[60%] ease-in-out duration-500 md:hidden text-white"
+            : "fixed left-[-100%] top-0 h-full w-[60%] ease-in-out duration-500 md:hidden"
+        }
       >
         <h1 className="font-bold text-2xl m-5">Nuclear Regulatory Division</h1>
         <ul className="uppercase">
-          <li
-            className="p-4 border-b border-slate-900 hover:bg-slate-800 ease-in-out duration-500"
-            data-aos="fade-right"
-            // data-aos-delay="100"
-          >
+          <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
             <a href="#">Home</a>
           </li>
-          <li
-            className="p-4 border-b border-slate-900 hover:bg-slate-800 ease-in-out duration-500"
-            data-aos="fade-right"
-            data-aos-delay="200"
-          >
+          <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
             <a href="#">About</a>
           </li>
-          <li
-            className="p-4 border-b border-slate-900 hover:bg-slate-800 ease-in-out duration-500"
-            data-aos="fade-right"
-            data-aos-delay="300"
-          >
+          <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
             <a href="#">Members</a>
           </li>
-          <li
-            className="p-4 hover:bg-slate-800 ease-in-out duration-500"
-            data-aos="fade-right"
-            data-aos-delay="400"
-          >
+          <li className="p-4  hover:bg-slate-800 ease-in-out duration-500">
             <a href="#">Contact</a>
           </li>
         </ul>

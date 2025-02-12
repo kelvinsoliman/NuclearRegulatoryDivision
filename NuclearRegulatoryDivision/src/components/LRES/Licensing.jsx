@@ -7,15 +7,26 @@ import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
+import LresHero from "./LresHero";
 
 const Licensing = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
 
+  const licenses = [
+    "Checklist for PNRI/NRD Application Form-01",
+    "Checklist for PNRI/NRD Application Form-02",
+    "PNRI/NRD Application Form-01 - APPLICATION FOR RADIOACTIVE MATERIAL LICENSE",
+    "PNRI/NRD Application Form-02 - APPLICATION FOR LICENSE TO OPERATE",
+    "PNRI/NRD Supplementary Form A - RADIOACTIVE MATERIALS AND PURPOSE(S) OF USE",
+    "PNRI/NRD Supplementary Form B - RADIATION MONITORING INSTRUMENTATION",
+    "PNRI/NRD Supplementary Form C - RADIATION WORKERS",
+  ];
+
   const responsibilities = [
     {
-      title: "License Application Review",
+      title: "Radioactive Material License",
       description:
         "Evaluating applications for nuclear materials, ensuring compliance with national and international safety standards.",
       icon: "📄",
@@ -43,22 +54,8 @@ const Licensing = () => {
   return (
     <div className="bg-gray-100 text-gray-900">
       {/* Hero Section */}
-      <header
-        className="relative bg-cover bg-center h-[400px] flex items-center justify-center text-center text-white mt-16"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative p-10" data-aos="fade-up">
-          <h1 className="text-5xl font-extrabold">
-            Licensing, Review, and Evaluation
-          </h1>
-          <p className="text-lg mt-4 max-w-3xl mx-auto">
-            Ensuring nuclear safety through rigorous licensing and review
-            processes.
-          </p>
-        </div>
-      </header>
 
+      <LresHero />
       {/* NAVBAR */}
       <LresNavbar />
 
@@ -94,43 +91,59 @@ const Licensing = () => {
         </div>
 
         {/* Right Section (Text Content) */}
-        <div className="md:w-2/3" data-aos="fade-left">
-          <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left">
-            Licensing Categories
-          </h2>
-          <p className="text-gray-700 text-lg mt-4">
-            Licensing categories are used to classify different types of
-            licenses based on the nature of activities, materials, or industries
-            being regulated. Their primary purpose is to ensure that
-            organizations or individuals comply with specific safety, security,
-            and operational standards relevant to their field.
-          </p>
 
-          {/* Responsibilities Section */}
-          <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left mt-10">
-            Core Responsibilities
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
-            {responsibilities.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 flex items-start space-x-4"
-                data-aos="fade-up"
-                data-aos-delay={index * 200}
-              >
-                <span className="text-4xl">{item.icon}</span>
-                <div>
-                  <h3 className="text-2xl font-semibold text-blue-600 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-700">{item.description}</p>
-                </div>
-              </div>
-            ))}
+        <div className="max-w-4xl mx-auto p-6" data-aos="fade-left">
+          <h1 className="text-3xl font-bold text-blue-600">
+            LICENSE APPLICATION
+          </h1>
+          <p className="mt-2 text-gray-600">
+            Under the existing laws and regulations, any person who intends to
+            import, receive, acquire, possess, process, or use radioactive
+            material for beneficial and peaceful purposes must be authorized in
+            a license. Application for a new license and amendment for specific
+            licensed activities can be obtained below.
+          </p>
+          <div
+            className="mt-6 border rounded-lg overflow-hidden shadow-lg"
+            data-aos="fade-up"
+          >
+            <div className="bg-slate-900 text-white p-4 font-bold">
+              RADIOACTIVE MATERIALS LICENSES
+            </div>
+            <ul className="divide-y divide-gray-300">
+              {licenses.map((license, index) => (
+                <li
+                  key={index}
+                  className="flex items-center p-4 bg-gray-100 hover:bg-gray-200"
+                >
+                  <span className="mr-3 text-blue-500 text-xl">📄</span>
+                  {license}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
-
+      
+      <section className="mt-10">
+        <h2 className="text-4xl font-bold text-blue-600 text-center">Core Responsibilities</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6 mb-10 mx-auto max-w-[1440px] ">
+          {responsibilities.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 flex items-start space-x-4"
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
+            >
+              <span className="text-4xl">{item.icon}</span>
+              <div>
+                <h3 className="text-2xl font-semibold text-blue-600 mb-2">{item.title}</h3>
+                <p className="text-gray-700">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* Contact Section */}
       <section
         id="contact"

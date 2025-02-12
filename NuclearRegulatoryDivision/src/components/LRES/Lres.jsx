@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import backgroundImage from "../../assets/PNRI_2.jpg";
 import LresNavbar from "./LresNavbar";
 import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png"
-
+import logo4 from "../../assets/AEW52_Thumbnail.png";
+import LresHero from "./LresHero";
+import LresFooter from "./LresFooter";
 
 const Lres = () => {
   useEffect(() => {
@@ -43,22 +43,8 @@ const Lres = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
-      {/* Hero Section */}
-      <header
-        className="relative bg-cover bg-center h-[400px] flex items-center justify-center text-center text-white mt-16"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative p-10" data-aos="fade-up">
-          <h1 className="text-5xl font-extrabold">
-            Licensing, Review, and Evaluation
-          </h1>
-          <p className="text-lg mt-4 max-w-3xl mx-auto">
-            Ensuring nuclear safety through rigorous licensing and review
-            processes.
-          </p>
-        </div>
-      </header>
+      {/* HERO */}
+      <LresHero />
 
       {/* NAVBAR */}
       <LresNavbar />
@@ -70,10 +56,26 @@ const Lres = () => {
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
           data-aos="fade-right"
         >
-          <img src={logo1} alt="Logo 1" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo2} alt="Logo 2" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo3} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
-          <img src={logo4} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
+          <img
+            src={logo1}
+            alt="Logo 1"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo2}
+            alt="Logo 2"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo3}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo4}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
 
           {/* Add more logos as needed */}
         </div>
@@ -84,16 +86,19 @@ const Lres = () => {
             About LRES
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            The Licensing, Review, and Evaluation Section (LRES) is responsible
-            for processing applications, assessing nuclear safety risks, and
-            ensuring regulatory compliance.
+            LRES carries out the review, evaluation and assessment of
+            applications to import, export, acquire, possess, transport, handle
+            and use nuclear and radioactive material, and operate atomic energy
+            facilities in order to ensure compliance with established
+            regulations and standards. LRES recommends the issuance of license
+            and prepares the license thereof.
           </p>
 
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left mt-10">
             Core Responsibilities
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
             {responsibilities.map((item, index) => (
               <div
                 key={index}
@@ -115,7 +120,7 @@ const Lres = () => {
       </section>
 
       {/* Contact Section */}
-      <section
+      {/* <section
         id="contact"
         className="container mx-auto px-6 py-16 text-center bg-white rounded-xl shadow-md"
         data-aos="fade-up"
@@ -131,14 +136,9 @@ const Lres = () => {
           contact@pnri.gov.ph
         </a>
       </section>
-
+ */}
       {/* Footer */}
-      <footer className="bg-gray-200 text-gray-700 text-center py-4 mt-10">
-        <p>
-          &copy; 2025 Nuclear Regulatory Division - Licensing, Review, and
-          Evaluation
-        </p>
-      </footer>
+      <LresFooter/>
     </div>
   );
 };

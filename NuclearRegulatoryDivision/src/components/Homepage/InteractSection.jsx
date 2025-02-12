@@ -83,7 +83,7 @@ const InteractSection = () => {
               <div
                 key={index}
                 className="swiper-slide"
-                data-aos="fade-up" // Add AOS animation to each slide
+                data-aos="fade-left" // Add AOS animation to each slide
                 data-aos-delay={index * 100} // Stagger animations
               >
                 <Link to={slide.link} className="block text-center">
