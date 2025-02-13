@@ -49,7 +49,7 @@ const InteractSection = () => {
       link: "#",
     },
     {
-      img: "src/assets/regulation.png",
+      img: "src/assets/inspection.png",
       text: "Inspection and Enforcement Section (IES)",
       link: "/regulations",
     },
@@ -64,14 +64,14 @@ const InteractSection = () => {
       link: "bulletin.php",
     },
     {
-      img: "src/assets/notice.png",
+      img: "src/assets/data-science.png",
       text: "Radiological Impact Assessment Section (RIAS)",
       link: "information.php",
     },
   ];
 
   return (
-    <section className="text-gray-700 body-font mt-10">
+    <section className="text-gray-700 body-font mt-10 " id="aboutus" >
       <div className="container px-10 py-12 mx-auto">
         {/* Animate the Swiper container */}
         <div

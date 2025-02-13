@@ -8,6 +8,7 @@ import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
 import LresHero from "./LresHero";
+import LresFooter from './LresFooter'
 
 const Licensing = () => {
   useEffect(() => {
@@ -145,7 +146,7 @@ const Licensing = () => {
         </div>
       </section>
       {/* Contact Section */}
-      <section
+      {/* <section
         id="contact"
         className="container mx-auto px-6 py-16 text-center bg-white rounded-xl shadow-md"
         data-aos="fade-up"
@@ -161,14 +162,9 @@ const Licensing = () => {
           contact@pnri.gov.ph
         </a>
       </section>
-
+ */}
       {/* Footer */}
-      <footer className="bg-gray-200 text-gray-700 text-center py-4 mt-10">
-        <p>
-          &copy; 2025 Nuclear Regulatory Division - Licensing, Review, and
-          Evaluation
-        </p>
-      </footer>
+       <LresFooter/>     
     </div>
   );
 };

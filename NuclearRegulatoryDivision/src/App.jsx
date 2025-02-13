@@ -9,6 +9,9 @@ import Regulations from "./components/Regulations";
 import NuclearRegulatoryDiv from "./components/NuclearRegulatoryDiv";
 import Lres from "./components/LRES/Lres";
 import Licensing from "./components/LRES/Licensing";
+import LresServices from "./components/LRES/LresServices";
+import ReviewEvaluation from "./components/LRES/ReviewEvaluation";
+import LresStaffs from "./components/LRES/LresStaffs";
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route path="/nrd" element={<NuclearRegulatoryDiv />} />
           <Route path="/lres" element={<Lres />} />
           <Route path="/Licensing" element={<Licensing />} />
+          <Route path="/lresservices" element={<LresServices />} />
+          <Route path="/ReviewEvaluation" element={<ReviewEvaluation />} />
+          <Route path="/LresStaffs" element={<LresStaffs />} />
 
         </Routes>
       </div>
