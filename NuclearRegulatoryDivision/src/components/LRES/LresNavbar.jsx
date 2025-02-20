@@ -69,7 +69,7 @@ const Navbar = () => {
                 Services
               </Link>
             </li>
-            <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
+            {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
                 to="/ReviewEvaluation"
                 className="block py-2 px-3 text-black rounded-sm md:p-0"
@@ -77,7 +77,7 @@ const Navbar = () => {
                 Review & Evaluation
               </Link>
             </li>
-
+ */}
 
             <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link

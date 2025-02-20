@@ -24,8 +24,8 @@ const Footer = () => {
           <div className="space-y-4" data-aos="fade-right" data-aos-delay="400">
             <h3 className="text-xl font-bold text-blue-500">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-400 hover:text-blue-500 transition duration-300">Home</a></li>
-              <li><a href="#about" className="text-gray-400 hover:text-blue-500 transition duration-300">About</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-blue-500 transition duration-300">Home</a></li>
+              <li><a href="#aboutus" className="text-gray-400 hover:text-blue-500 transition duration-300">About</a></li>
               <li><a href="#services" className="text-gray-400 hover:text-blue-500 transition duration-300">Services</a></li>
               <li><a href="#contact" className="text-gray-400 hover:text-blue-500 transition duration-300">Contact</a></li>
             </ul>

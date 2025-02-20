@@ -20,9 +20,9 @@ const Navbar = () => {
     <div className=" w-full mx-auto h-24 px-4 flex items-center justify-between  bg-slate-950  text-white">
       <div className="flex items-center justify-center gap-2.5">
         <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
-        <h1 className="font-bold text-white text-2xl hidden md:block">
+        <a href="https://www.pnri.dost.gov.ph/" className="font-bold text-white text-2xl hidden md:block">
           Nuclear Regulatory Division
-        </h1>
+        </a>
       </div>
 
       <ul className="hidden md:flex gap-2.5">
@@ -33,10 +33,10 @@ const Navbar = () => {
           <a href="#aboutus">About</a>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <a href="#">Members</a>
+          <Link to="/Activities">Activities</Link>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <a href="#">Contact</a>
+          <Link to="/Contacts">Contact</Link>
         </li>
       </ul>
 

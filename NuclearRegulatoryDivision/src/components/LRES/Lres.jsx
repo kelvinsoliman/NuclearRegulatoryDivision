@@ -8,11 +8,45 @@ import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
 import LresHero from "./LresHero";
 import LresFooter from "./LresFooter";
+import LresRating from "./LresRating";
 
 const Lres = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5175/lres", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      alert(result.message);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      alert("An error occurred while submitting feedback.");
+    }
+  };
 
   const responsibilities = [
     {
@@ -76,13 +110,31 @@ const Lres = () => {
             alt="Logo 3"
             className="h-20 w-20 md:h-30 md:w-30 rounded-full"
           />
-
-          {/* Add more logos as needed */}
+          <img
+            src={logo1}
+            alt="Logo 1"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo2}
+            alt="Logo 2"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo3}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
+          <img
+            src={logo4}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+          />
         </div>
 
         {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
-          <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left">
+          <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left">
             About LRES
           </h2>
           <p className="text-gray-700 text-lg mt-4">
@@ -93,9 +145,8 @@ const Lres = () => {
             regulations and standards. LRES recommends the issuance of license
             and prepares the license thereof.
           </p>
-
           {/* Responsibilities Section */}
-          <h2 className="text-4xl font-bold text-blue-600 text-center md:text-left mt-10">
+          <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
             Core Responsibilities
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
@@ -108,7 +159,7 @@ const Lres = () => {
               >
                 <span className="text-4xl">{item.icon}</span>
                 <div>
-                  <h3 className="text-2xl font-semibold text-blue-600 mb-2">
+                  <h3 className="text-2xl font-semibold text-indigo-600 mb-2">
                     {item.title}
                   </h3>
                   <p className="text-gray-700">{item.description}</p>
@@ -116,29 +167,62 @@ const Lres = () => {
               </div>
             ))}
           </div>
+          {/* Feedback Section */}
+          <h1 className="pt-10 text-indigo-600 text-xl md:text-4xl font-bold capitalize">
+            Your Feedback is important to us
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-xl shadow-lg mt-6"
+          >
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Name (Optional)"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Email (Optional)"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold">
+                Message
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows="4"
+                placeholder="Your Feedback"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-500 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 ease-in-out duration-500"
+            >
+              Submit Feedback
+            </button> 
+          </form>{" "}
+          <LresRating/>
         </div>
       </section>
 
-      {/* Contact Section */}
-      {/* <section
-        id="contact"
-        className="container mx-auto px-6 py-16 text-center bg-white rounded-xl shadow-md"
-        data-aos="fade-up"
-      >
-        <h2 className="text-4xl font-bold text-blue-600">Get in Touch</h2>
-        <p className="text-gray-700 mt-4">
-          For inquiries or licensing concerns, contact us:
-        </p>
-        <a
-          href="mailto:contact@pnri.gov.ph"
-          className="text-blue-500 text-lg underline"
-        >
-          contact@pnri.gov.ph
-        </a>
-      </section>
- */}
       {/* Footer */}
-      <LresFooter/>
+      <LresFooter />
     </div>
   );
 };

@@ -4,272 +4,95 @@ import "aos/dist/aos.css";
 import LresNavbar from "./LresNavbar";
 import LresHero from "./LresHero";
 import LresFooter from "./LresFooter";
+import img1 from "../../assets/INSO_Thumbnail.png";
 
 const LresStaffs = () => {
-  const [hoveredMember, setHoveredMember] = useState(null);
-
+  const [staffMembers, setStaffMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   useEffect(() => {
-    AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
+    AOS.init({ duration: 800, easing: "ease-in-out", once: true });
+
+    const fetchStaffMembers = async () => {
+      try {
+        const response = await fetch("http://localhost:5175/LresStaffs");
+        const data = await response.json();
+        setStaffMembers(data);
+        setLoading(false);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching staff members:", error);
+        setError(false);
+      }
+    };
+
+    fetchStaffMembers();
   }, []);
 
-  // Staff list organized in hierarchy with area of specialization
-  const staffHierarchy = {
-    head: {
-      id: "head",
-      name: "Carl M. Nohay",
-      position: "Licensing Review and Evaluation Head",
-      image: "https://via.placeholder.com/100",
-      specialization: "Overall regulatory compliance and strategic oversight",
-    },
-    level2: [
-      {
-        id: "level2-1",
-        name: "Norman Jay V. Barro",
-        position: "SRS II",
-        image: "https://via.placeholder.com/100",
-        specialization: "Nuclear safety and reactor design",
-      },
-      {
-        id: "level2-2",
-        name: "Allan Gregor D. Bulos",
-        position: "SRS II",
-        image: "https://via.placeholder.com/100",
-        specialization: "Radiation protection and safety protocols",
-      },
-    ],
-    level3: [
-      {
-        id: "level3-1",
-        name: "Romelda P. Azores, M. SC.",
-        position: "Senior SRS",
-        image: "https://via.placeholder.com/100",
-        specialization: "Environmental impact assessments",
-      },
-      {
-        id: "level3-2",
-        name: "MA. Elina Salvacion Kristina V. Ramo, M, SC.",
-        position: "Senior SRS",
-        image: "https://via.placeholder.com/100",
-        specialization: "Medical radiation safety and dosimetry",
-      },
-      {
-        id: "level3-3",
-        name: "Joseph R. Tugo",
-        position: "Senior SRS",
-        image: "https://via.placeholder.com/100",
-        specialization: "Quality assurance and regulatory audits",
-      },
-    ],
-    level4: [
-      {
-        id: "level4-1",
-        name: "Bee Jay Magallanes",
-        position: "SRS I",
-        image: "https://via.placeholder.com/100",
-        specialization: "Support in licensing and documentation",
-      },
-    ],
-    level5: [
-      {
-        id: "level5-1",
-        name: "Jericisa Amberose P. Acha",
-        position: "SRSn",
-        image: "https://via.placeholder.com/100",
-        specialization: "Support in licensing and documentation",
-      },
-    ],
-    level6: [
-      {
-        id: "level6-1",
-        name: "Jericisa Amberose P. Acha",
-        position: "SRSn",
-        image: "https://via.placeholder.com/100",
-        specialization: "Support in licensing and documentation",
-      },
-    ],
-  };
+  if (loading) {
+    return (
+      <div className="text-center py-10 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-700"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-10 text-red-500 bg-gray-800">
+        Error: {error}. Please try again later.
+      </div>
+    );
+  }
+
+  // const getGridColumnClass = (index) => {
+  //   if (index === 0) return "col-span-3"; // First layer: 1 staff (full width)
+  //   if (index >= 1 && index <= 3) return "col-span-1"; // Second layer: 3 staffs
+  //   if (index >= 4 && index <= 5) return "col-span-2"; // Third layer: 2 staffs
+  //   return "col-span-3"; // Rest: 1 staff (full width)
+  // };
 
   return (
-    <div className="bg-gray-100 text-gray-800 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
       <LresHero />
       <LresNavbar />
-
-      {/* Main Section */}
-      <section className="container mx-auto px-6 py-16 text-center">
-        <h1 className="text-4xl font-bold text-blue-600">
-          Licensing Review & Evaluation Team
-        </h1>
-        <p className="mt-2 text-gray-600">
-          Meet our expert team ensuring compliance with safety and regulatory
-          standards.
-        </p>
-
-        {/* Organizational Chart */}
-        <div className="flex flex-col items-center mt-10 space-y-10">
-          {/* Top Level */}
-          <div
-            className="bg-white p-6 rounded-lg shadow-md max-w-sm relative transform transition-transform hover:scale-105 hover:shadow-lg"
-            data-aos="fade-down"
-            onMouseEnter={() => setHoveredMember(staffHierarchy.head)}
-            onMouseLeave={() => setHoveredMember(null)}
-          >
-            <img
-              src={staffHierarchy.head.image}
-              alt={staffHierarchy.head.name}
-              className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
-            />
-            <h3 className="text-lg font-semibold mt-3 text-blue-600">
-              {staffHierarchy.head.name}
-            </h3>
-            <p className="text-gray-600">{staffHierarchy.head.position}</p>
-            {hoveredMember?.id === staffHierarchy.head.id && (
-              <div className="absolute -top-10 left-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                <p className="text-sm">{staffHierarchy.head.specialization}</p>
-              </div>
-            )}
-          </div>
-
-          {/* Second Level - 3 columns */}
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
-            {staffHierarchy.level3.map((staff, index) => (
+      <section className="container mx-auto px-4  py-12 flex flex-col lg:flex-row items-center justify-between">
+        {/* Logo on the left */}
+        <div className="lg:w-1/3 mb-8 lg:mb-0   justify-center items-center gap-3 hidden md:flex lg:flex-col">
+          <img src={img1} alt="Logo" className="w-32 h-auto rounded-full" />
+          <img src={img1} alt="Logo" className="w-32 h-auto rounded-full" />
+          <img src={img1} alt="Logo" className="w-32 h-auto rounded-full" />
+          <img src={img1} alt="Logo" className="w-32 h-auto rounded-full" />
+          <img src={img1} alt="Logo" className="w-32 h-auto rounded-full" />
+        </div>
+        {/* Staff section on the right */}
+        <div className="lg:w-2/3">
+          <h1 className="text-3xl font-bold text-center text-indigo-600 mb-12">
+            Licensing Review & Evaluation Team
+          </h1>
+          <div className="grid grid-cols-1 px-10 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {staffMembers.map((staff) => (
               <div
                 key={staff.id}
-                className="bg-white p-6 rounded-lg shadow-md w-60 relative transform transition-transform hover:scale-105 hover:shadow-lg"
+                className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 relative index`}
                 data-aos="fade-up"
-                data-aos-delay={index * 150}
-                onMouseEnter={() => setHoveredMember(staff)}
-                onMouseLeave={() => setHoveredMember(null)}
               >
                 <img
-                  src={staff.image}
-                  alt={staff.name}
-                  className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
+                  src={staff.img}
+                  alt={staff.emp_name}
+                  className="w-20 h-20 rounded-full mx-auto border border-gray-300"
                 />
-                <h3 className="text-lg font-semibold mt-3 text-blue-600">
-                  {staff.name}
+                <h3 className="mt-5 text-lg font-semibold text-center text-gray-800">
+                  {staff.emp_name}
                 </h3>
-                <p className="text-gray-600">{staff.position}</p>
-                {hoveredMember?.id === staff.id && (
-                  <div className="absolute -top-10 right-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                    <p className="text-sm">{staff.specialization}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Third Level - 2 columns */}
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
-            {staffHierarchy.level2.map((staff, index) => (
-              <div
-                key={staff.id}
-                className="bg-white p-6 rounded-lg shadow-md w-64 relative transform transition-transform hover:scale-105 hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-                onMouseEnter={() => setHoveredMember(staff)}
-                onMouseLeave={() => setHoveredMember(null)}
-              >
-                <img
-                  src={staff.image}
-                  alt={staff.name}
-                  className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
-                />
-                <h3 className="text-lg font-semibold mt-3 text-blue-600">
-                  {staff.name}
-                </h3>
-                <p className="text-gray-600">{staff.position}</p>
-                {hoveredMember?.id === staff.id && (
-                  <div className="absolute -top-10 left-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                    <p className="text-sm">{staff.specialization}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Level 4 */}
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
-            {staffHierarchy.level4.map((staff, index) => (
-              <div
-                key={staff.id}
-                className="bg-white p-6 rounded-lg shadow-md w-64 relative transform transition-transform hover:scale-105 hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-                onMouseEnter={() => setHoveredMember(staff)}
-                onMouseLeave={() => setHoveredMember(null)}
-              >
-                <img
-                  src={staff.image}
-                  alt={staff.name}
-                  className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
-                />
-                <h3 className="text-lg font-semibold mt-3 text-blue-600">
-                  {staff.name}
-                </h3>
-                <p className="text-gray-600">{staff.position}</p>
-                {hoveredMember?.id === staff.id && (
-                  <div className="absolute -top-10 right-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                    <p className="text-sm">{staff.specialization}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Level 5 */}
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
-            {staffHierarchy.level5.map((staff, index) => (
-              <div
-                key={staff.id}
-                className="bg-white p-6 rounded-lg shadow-md w-64 relative transform transition-transform hover:scale-105 hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-                onMouseEnter={() => setHoveredMember(staff)}
-                onMouseLeave={() => setHoveredMember(null)}
-              >
-                <img
-                  src={staff.image}
-                  alt={staff.name}
-                  className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
-                />
-                <h3 className="text-lg font-semibold mt-3 text-blue-600">
-                  {staff.name}
-                </h3>
-                <p className="text-gray-600">{staff.position}</p>
-                {hoveredMember?.id === staff.id && (
-                  <div className="absolute -top-10 right-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                    <p className="text-sm">{staff.specialization}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Level 6 */}
-          <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
-            {staffHierarchy.level6.map((staff, index) => (
-              <div
-                key={staff.id}
-                className="bg-white p-6 rounded-lg shadow-md w-64 relative transform transition-transform hover:scale-105 hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-                onMouseEnter={() => setHoveredMember(staff)}
-                onMouseLeave={() => setHoveredMember(null)}
-              >
-                <img
-                  src={staff.image}
-                  alt={staff.name}
-                  className="w-20 h-20 mx-auto rounded-full border-2 border-blue-600"
-                />
-                <h3 className="text-lg font-semibold mt-3 text-blue-600">
-                  {staff.name}
-                </h3>
-                <p className="text-gray-600">{staff.position}</p>
-                {hoveredMember?.id === staff.id && (
-                  <div className="absolute -top-10 right-0 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-50">
-                    <p className="text-sm">{staff.specialization}</p>
-                  </div>
-                )}
+                <p className="text-sm text-gray-500 text-center">
+                  {staff.emp_pos}
+                </p>
+                <div className="absolute inset-0 p-6 bg-white bg-opacity-90 text-black flex items-center justify-center rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-center text-sm">
+                    Specialization: {staff.emp_specialization}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

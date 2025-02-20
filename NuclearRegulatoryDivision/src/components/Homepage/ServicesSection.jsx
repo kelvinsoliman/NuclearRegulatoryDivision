@@ -3,6 +3,7 @@ import BPLogo from "../../assets/BP-LOGO-BT.png";
 import FoiLogo from "../../assets/foi_logo.png";
 import InsoThumbnail from "../../assets/INSO_Thumbnail.png";
 import { Link } from "react-router-dom";
+
 const ServicesSection = () => {
   return (
     <section className="py-10 relative z-0 " id="services">
@@ -15,12 +16,10 @@ const ServicesSection = () => {
             to="/nrd"
             className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-slate-100 hover:text-white"
           >
-          
             <img
               src={BPLogo}
               alt="wheat flour grinding"
               className="w-full h-64 object-cover  transition duration-300 hover:opacity-80"
-              
             />
             <div className="p-6 text-center">
               <h3 className="text-xl font-medium text-gray-800 mb-2 transition duration-300 hover:text-teal-400">
@@ -38,7 +37,7 @@ const ServicesSection = () => {
           </Link>
 
           <Link
-            to="/nrd"
+            to="/MissionVision"
             className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-slate-100 hover:text-white"
           >
             <img
@@ -59,7 +58,7 @@ const ServicesSection = () => {
           </Link>
 
           <Link
-            to="/nrd"
+            to="/MissionVision"
             className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-slate-100 hover:text-white"
           >
             <img
@@ -67,6 +66,7 @@ const ServicesSection = () => {
               alt="Coffee"
               className="w-full h-64 object-cover transition duration-300 hover:opacity-80"
             />
+
             <div className="p-6 text-center">
               <h3 className="text-xl font-medium text-gray-800 mb-2 transition duration-300 hover:text-teal-400">
                 Citizen Charter
