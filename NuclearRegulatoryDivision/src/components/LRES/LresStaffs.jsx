@@ -10,42 +10,38 @@ const LresStaffs = () => {
   const [staffMembers, setStaffMembers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  useEffect(() => {
-    AOS.init({ duration: 800, easing: "ease-in-out", once: true });
+useEffect(() => {
+  AOS.init({ duration: 800, easing: "ease-in-out", once: true });
 
-    const fetchStaffMembers = async () => {
-      try {
-        const response = await fetch("http://localhost:5175/LresStaffs");
-        const data = await response.json();
-        setStaffMembers(data);
-        setLoading(false);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching staff members:", error);
-        setError(false);
+  const fetchStaffMembers = async () => {
+    try {
+      const response = await fetch("http://localhost:5175/LresStaffs");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    };
 
-    fetchStaffMembers();
-  }, []);
+      const data = await response.json();
+      console.log("Fetched Staff Members:", data); // Correct placement
+      setStaffMembers(data);
+    } catch (error) {
+      console.error("Error fetching staff members:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if (loading) {
-    return (
-      <div className="text-center py-10 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-700"></div>
-      </div>
-    );
-  }
+  fetchStaffMembers();
+}, []);
 
-  if (error) {
-    return (
-      <div className="text-center py-10 text-red-500 bg-gray-800">
-        Error: {error}. Please try again later.
-      </div>
-    );
-  }
-
-  // const getGridColumnClass = (index) => {
+if (loading) {
+  return (
+    <div className="text-center py-10 flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-700"></div>
+    </div>
+  );
+}  // const getGridColumnClass = (index) => {
   //   if (index === 0) return "col-span-3"; // First layer: 1 staff (full width)
   //   if (index >= 1 && index <= 3) return "col-span-1"; // Second layer: 3 staffs
   //   if (index >= 4 && index <= 5) return "col-span-2"; // Third layer: 2 staffs

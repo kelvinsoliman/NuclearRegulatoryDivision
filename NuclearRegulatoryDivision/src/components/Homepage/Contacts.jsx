@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/BP-LOGO-BT.png";
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
-import HeroSection from "./HeroSection";
+import LresRating from "../LRES/LresRating";
 
 const Contacts = () => {
   useEffect(() => {
@@ -18,6 +18,9 @@ const Contacts = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState(null);
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,87 +31,56 @@ const Contacts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate required field
+    if (!formData.message.trim()) {
+      setResponseMessage({ type: "error", text: "Message is required." });
+      return;
+    }
+
+    setLoading(true);
+    setResponseMessage(null);
+
     try {
-      const response = await fetch("http://localhost:5175/lres", {
+      const response = await fetch("http://localhost:5175/Contacts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-      alert(result.message);
+
+      if (response.ok) {
+        setResponseMessage({ type: "success", text: result.message || "Feedback submitted successfully!" });
+        setFormData({ name: "", email: "", message: "" }); // Reset form
+      } else {
+        setResponseMessage({ type: "error", text: result.message || "Submission failed." });
+      }
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      alert("An error occurred while submitting feedback.");
+      setResponseMessage({ type: "error", text: "An error occurred. Please try again." });
+    } finally {
+      setLoading(false);
     }
   };
 
-
   return (
     <div className="bg-gray-100 text-gray-900">
-      {/* HERO */}
-
-      {/* Main Content with Logos and Text */}
-      <section className="container mx-auto px-6 py-16  flex flex-col md:flex-row items-center md:items-start gap-10">
+      {/* Main Content */}
+      <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         {/* Left Section (Logos) */}
-        <div
-          className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
-          data-aos="fade-right"
-        >
-          <img
-            src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
+        <div className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4" data-aos="fade-right">
+          {[logo1, logo2, logo3, logo4].map((logo, index) => (
+            <img key={index} src={logo} alt={`Logo ${index + 1}`} className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
+          ))}
         </div>
 
         {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
-          {/* Feedback Section */}
           <h1 className="pt-10 text-indigo-600 text-xl md:text-4xl font-bold capitalize">
-            Your Feedback is important to us
+            Your Feedback is Important to Us
           </h1>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-6 rounded-xl shadow-lg mt-6"
-          >
+          
+          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg mt-6">
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold">Name</label>
               <input
@@ -132,9 +104,7 @@ const Contacts = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                Message
-              </label>
+              <label className="block text-gray-700 font-semibold">Message</label>
               <textarea
                 name="message"
                 value={formData.message}
@@ -144,17 +114,26 @@ const Contacts = () => {
                 placeholder="Your Feedback"
               ></textarea>
             </div>
+
+            {/* Response Message */}
+            {responseMessage && (
+              <p className={`text-white px-10 font-semibold p-3 w-full bg-${responseMessage.type === "error" ? "red-600" : "green-600"} mb-2 rounded-3xl`}>
+                {responseMessage.text}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-500 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 ease-in-out duration-500"
+              className="bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 ease-in-out duration-500"
+              disabled={loading}
             >
-              Submit Feedback
-            </button> 
-          </form>{" "}
+              {loading ? "Submitting..." : "Submit Feedback"}
+            </button>
+          </form>
+
+          <LresRating />
         </div>
       </section>
-
-      {/* Footer */}
     </div>
   );
 };

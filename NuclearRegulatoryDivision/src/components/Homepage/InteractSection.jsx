@@ -46,17 +46,17 @@ const InteractSection = () => {
     {
       img: "src/assets/worker.png",
       text: "Regulations and Standards Development Section (RSDS)",
-      link: "#",
-    },
-    {
-      img: "src/assets/inspection.png",
-      text: "Inspection and Enforcement Section (IES)",
-      link: "/regulations",
+      link: "/Rsds",
     },
     {
       img: "src/assets/licensing.png",
       text: "Licensing, Review and Evaluation Section (LRES)",
       link: "/lres",
+    },
+    {
+      img: "src/assets/inspection.png",
+      text: "Inspection and Enforcement Section (IES)",
+      link: "/regulations",
     },
     {
       img: "src/assets/regulation (1).png",

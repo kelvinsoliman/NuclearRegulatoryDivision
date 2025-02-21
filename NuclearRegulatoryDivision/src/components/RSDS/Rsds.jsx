@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LresNavbar from "./LresNavbar";
 import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
-import LresHero from "./LresHero";
-import LresFooter from "./LresFooter";
-import LresRating from "./LresRating";
+import RSDSNavbar from "./RSDSNavbar";
+import RSDSHeroSection from "./RSDSHeroSection";
+import RSDSFooter from "./RSDSFooter";
 
-const Lres = () => {
+const Rsds = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
@@ -78,10 +77,10 @@ const Lres = () => {
   return (
     <div className="bg-gray-100 text-gray-900">
       {/* HERO */}
-      <LresHero />
+      <RSDSHeroSection />
 
       {/* NAVBAR */}
-      <LresNavbar />
+      <RSDSNavbar />
 
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
@@ -135,15 +134,12 @@ const Lres = () => {
         {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left">
-            About LRES
+            About RSDS
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            LRES carries out the review, evaluation and assessment of
-            applications to import, export, acquire, possess, transport, handle
-            and use nuclear and radioactive material, and operate atomic energy
-            facilities in order to ensure compliance with established
-            regulations and standards. LRES recommends the issuance of license
-            and prepares the license thereof.
+            RSDS formulates nuclear safety policy, develops and establishes
+            nuclear regulations, guides and criteria consistent with
+            internationally acceptable guidelines and best practices.
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
@@ -169,11 +165,10 @@ const Lres = () => {
           </div>
         </div>
       </section>
-
       {/* Footer */}
-      <LresFooter />
+      <RSDSFooter/>
     </div>
   );
 };
 
-export default Lres;
+export default Rsds;

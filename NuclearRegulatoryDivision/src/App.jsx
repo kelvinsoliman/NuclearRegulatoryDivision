@@ -5,7 +5,7 @@ import ServicesSection from "./components/Homepage/ServicesSection";
 import InteractSection from "./components/Homepage/InteractSection";
 import AboutUs from "./components/Homepage/AboutUs";
 import VisitUs from "./components/Homepage/VisitUs";
-import Regulations from "./components/Regulations";
+import Regulations from "./components/RSDS/Regulations";
 import NuclearRegulatoryDiv from "./components/Homepage/NuclearRegulatoryDiv";
 import Lres from "./components/LRES/Lres";
 import Licensing from "./components/LRES/Licensing";
@@ -14,7 +14,9 @@ import ReviewEvaluation from "./components/LRES/ReviewEvaluation";
 import LresStaffs from "./components/LRES/LresStaffs";
 import MissionVision from "./components/Homepage/MissionVision";
 import Contacts from "./components/Homepage/Contacts";
-import Activities from "./components/Homepage/Activities";
+import LresRating from "./components/LRES/LresRating";
+import Rsds from "./components/RSDS/Rsds";
+import Achievements from "./components/LRES/Achievements";
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
                 <HeroSection />
                 <InteractSection />
                 <ServicesSection />
-                <AboutUs />
+                {/* <AboutUs /> */}
                 <VisitUs />
               </>
             }
@@ -43,6 +45,9 @@ function App() {
           <Route path="/ReviewEvaluation" element={<ReviewEvaluation />} />
           <Route path="/LresStaffs" element={<LresStaffs />} />
           <Route path="/MissionVision" element={<MissionVision />} />
+          <Route path="/Rsds" element={<Rsds />} />
+          <Route path="/Achievements" element={<Achievements />} />
+
           <Route
             path="/Contacts"
             element={
@@ -53,7 +58,15 @@ function App() {
             }
           />
 
-          <Route path="/Activities" element={<Activities />} />
+          <Route
+            path="/Activities"
+            element={
+              <>
+                <HeroSection />
+                <Achievements/>
+              </>
+            }
+          />
         </Routes>
       </div>
     </Router>

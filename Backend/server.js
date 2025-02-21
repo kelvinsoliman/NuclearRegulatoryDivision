@@ -2,14 +2,25 @@ import express from "express";
 import mysql from "mysql";
 import cors from "cors";
 import bodyParser from "body-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+
 const app = express();
 const PORT = 5175;
+
 
 // Middleware Setup
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
+// Get the current file path for ES modules
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// // Define a static folder for file storage
+// const FILES_DIR = path.join(__dirname, "uploads");
 
 // Database Configuration
 const db = mysql.createConnection({
@@ -29,72 +40,68 @@ db.connect((err) => {
   console.log("Connected to MySQL database");
 });
 
+// Fetch all license applications
+app.get("/licensing", (req, res) => {
+  const query = "SELECT * FROM licenseapp_tbl";
 
-// Helper Function for Queries
-const executeQuery = (query, params, res) => {
-  db.query(query, params, (err, data) => {
+  db.query(query, (err, results) => {
     if (err) {
       console.error("Database query error:", err);
       return res.status(500).json({ error: "Database query error" });
     }
-    return res.status(200).json(data);
+
+    res.json(results);
   });
-};
+});
 
-// Fetch Routes
-app.get("/Licensing", (req, res) => executeQuery("SELECT * FROM licenseapp_tbl", [], res));
-app.get("/LresServices", (req, res) => executeQuery("SELECT * FROM services_tbl", [], res));
-app.get("/LresStaffs", (req, res) => executeQuery("SELECT * FROM employee_tbl", [], res));
+// SERVICES fetching
+app.get("/LresServices", (req, res) => {
+  const q = "SELECT * FROM services_tbl";
 
-// Post Route for Feedback
-app.post("/lres", (req, res) => {
-  console.log("Received request body:", req.body); 
+  db.query(q, (err, results) => {
+    if (err) {
+      console.error("Database query error:", err);
+      return res.status(500).json({ error: "Database query error" });
+    }
 
+    res.status(200).json(results);
+  });
+});
+
+// ACHIEVEMENTS SECTION
+
+app.get("/Achievements", (req, res) => {
+  const q = "SELECT * FROM achievement_tbl";
+
+  db.query(q, (err, results) => {
+    if (err) {
+      console.error("Database query error:", err);
+      return res.status(500).json({ error: "Database query error" });
+    }
+
+    res.status(200).json(results.length > 0 ? results : []);
+  });
+});
+
+
+// FEEDBACK
+app.post("/Contacts", (req, res) => {
   const { name, email, message } = req.body;
 
-  // Validate input
   if (!message) {
-    console.error("Validation failed: Missing fields");
-    return res.status(400).json({ error: "All fields are required" });
+    return res.status(400).json({ message: "Message is required" });
   }
 
-  const query = "INSERT INTO feedback_tbl (name, email, message) VALUES (?, ?, ?)";
-  const params = [name, email, message];
+  const sql = "INSERT INTO feedback_tbl (name, email, message) VALUES (?, ?, ?)";
+  const values = [name || null, email || null, message];
 
-
-  db.query(query, params, (err, result) => {
+  db.query(sql, values, (err, result) => {
     if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({ error: "Database query error" });
+      console.error("Database Error: ", err);
+      return res.status(500).json({ message: "Database error", error: err.sqlMessage || err });
     }
-    console.log("Feedback inserted successfully:", result);
-    return res.status(201).json({ message: "Feedback submitted successfully" });
+    res.status(200).json({ message: "Feedback submitted successfully" });
   });
 });
-
-
-
-
-
-
-
-// Mock database (replace with a real database like MongoDB or MySQL)
-let ratings = [];
-
-// Endpoint to handle rating submission
-app.post("/StarRating", (req, res) => {
-  const { rating } = req.body;
-
-  if (!rating || rating < 1 || rating > 5) {
-    return res.status(400).json({ message: "Invalid rating value." });
-  }
-
-  // Save the rating to the database (mock implementation)
-  ratings.push({ rating, timestamp: new Date() });
-  res.status(200).json({ message: "Rating saved successfully!" });
-});
-
-// Start the server
-
 // Server Listener
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

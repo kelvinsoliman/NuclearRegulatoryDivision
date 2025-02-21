@@ -2,7 +2,8 @@ import { useState } from "react";
 import logo from "../../assets/PNRI_Logo.jpg";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+
+const RSDSNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDoubleDropdownOpen, setIsDoubleDropdownOpen] = useState(false);
@@ -10,13 +11,10 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-gray-200 shadow-xl ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="#"
-          className="flex items-center justify-between space-x-3 rtl:space-x-reverse "
-        >
+        <a href="#" className="flex items-center justify-between space-x-3 rtl:space-x-reverse ">
           <img src={logo} className="h-10 w-10 rounded-full" alt="PNRI Logo" />
           <span className="hidden lg:block self-center text-xl lg:text-2xl font-semibold whitespace-nowrap text-black ">
-            Licensing, Review & Evaluation
+            Regulations and Standards Development
           </span>
         </a>
         <button
@@ -48,7 +46,7 @@ const Navbar = () => {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
-                to="/lres"
+                to="/Rsds"
                 className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
               >
                 Home
@@ -57,10 +55,10 @@ const Navbar = () => {
 
             <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
-                to="/licensing"
+                to="/Regulations"
                 className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0"
               >
-                Licensing
+                Regulations
               </Link>
             </li>
             <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
@@ -83,12 +81,14 @@ const Navbar = () => {
 
             <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
-                to="/Achievements"
+                to="/LresStaffs"
                 className="block py-2 px-3 text-black rounded-sm md:p-0"
               >
-                Achievements
+                Team Members
               </Link>
             </li>
+
+
 
             <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
               <button
@@ -116,7 +116,10 @@ const Navbar = () => {
                 <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
                   <ul className="py-2 text-sm text-black">
                     <li className="hover:bg-gray-300">
-                      <a href="#" className="block px-4 py-2 ">
+                      <a
+                        href="#"
+                        className="block px-4 py-2 "
+                      >
                         Dashboard
                       </a>
                     </li>
@@ -166,7 +169,10 @@ const Navbar = () => {
                       )}
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-300">
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-300"
+                      >
                         Earnings
                       </a>
                     </li>
@@ -181,4 +187,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default RSDSNavbar;
