@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const StarRating = ({ totalStars = 5 }) => {
   const [selectedStars, setSelectedStars] = useState(0);
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track if rating is submitted
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Function to handle rating submission
   const handleSubmitRating = async () => {
@@ -24,7 +24,7 @@ const StarRating = ({ totalStars = 5 }) => {
 
       if (response.ok) {
         alert("Rating submitted successfully!");
-        setIsSubmitted(true); // Disable further changes after submission
+        setIsSubmitted(true);
       } else {
         alert(result.message || "Failed to submit rating.");
       }
@@ -37,19 +37,20 @@ const StarRating = ({ totalStars = 5 }) => {
   return (
     <div className="flex flex-col justify-center items-center font-medium space-x-1 mt-5 p-10 bg-white shadow-6xl">
       <h1 className="text-xl text-indigo-600 md:text-4xl">Please Rate Us</h1>
-      <div>
+      <div className="flex items-center">
         {[...Array(totalStars)].map((_, index) => (
           <button
             key={index}
             className={`text-xl md:text-4xl ${
               index < selectedStars ? "text-yellow-400" : "text-gray-300"
             }`}
-            onClick={() => !isSubmitted && setSelectedStars(index + 1)} // Disable clicks after submission
-            disabled={isSubmitted} // Disable button after submission
+            onClick={() => !isSubmitted && setSelectedStars(index + 1)}
+            disabled={isSubmitted}
           >
             ★
           </button>
         ))}
+        <span className="ml-2 text-lg text-gray-700">{selectedStars.toFixed(1)}</span>
       </div>
       {!isSubmitted && (
         <button

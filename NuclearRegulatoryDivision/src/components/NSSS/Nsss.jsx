@@ -5,11 +5,11 @@ import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
-import RSDSNavbar from "./RSDSNavbar";
-import RSDSHeroSection from "./RSDSHeroSection";
-import RSDSFooter from "./RSDSFooter";
+import NSSSHero from "./NSSSHero";
+import NSSSNavbar from "./NSSSNavbar";
+import NSSSFooter from "./NSSSFooter";
 
-const Rsds = () => {
+const Nsss = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
@@ -77,11 +77,9 @@ const Rsds = () => {
   return (
     <div className="bg-gray-100 text-gray-900">
       {/* HERO */}
-      <RSDSHeroSection />
-
+      <NSSSHero/>
       {/* NAVBAR */}
-      <RSDSNavbar />
-
+      <NSSSNavbar/>
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         {/* Left Section (Logos) */}
@@ -134,12 +132,14 @@ const Rsds = () => {
         {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left">
-            About RSDS
+            About NSSS
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            RSDS formulates nuclear safety policy, develops and establishes
-            nuclear regulations, guides and criteria consistent with
-            internationally acceptable guidelines and best practices.
+            NSSS coordinates and carries out inspections in support of
+            international nuclear safeguards commitment and the physical
+            protection of nuclear and other radioactive materials and
+            facilities, and coordinates the implementation of foreign-assisted
+            projects on nuclear security.{" "}
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
@@ -166,9 +166,9 @@ const Rsds = () => {
         </div>
       </section>
       {/* Footer */}
-      <RSDSFooter />
+      <NSSSFooter/>
     </div>
   );
 };
 
-export default Rsds;
+export default Nsss;

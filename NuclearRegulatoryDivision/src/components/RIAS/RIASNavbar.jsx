@@ -2,8 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/PNRI_Logo.jpg";
 import { Link } from "react-router-dom";
 
-
-const RSDSNavbar = () => {
+const RIASNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDoubleDropdownOpen, setIsDoubleDropdownOpen] = useState(false);
@@ -11,10 +10,13 @@ const RSDSNavbar = () => {
   return (
     <nav className="bg-white border-gray-200 shadow-xl ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center justify-between space-x-3 rtl:space-x-reverse ">
+        <a
+          href="#"
+          className="flex items-center justify-between space-x-3 rtl:space-x-reverse "
+        >
           <img src={logo} className="h-10 w-10 rounded-full" alt="PNRI Logo" />
           <span className="hidden lg:block self-center text-xl lg:text-2xl font-semibold whitespace-nowrap text-black ">
-            Regulations and Standards Development
+            Radiological Impact Assessment
           </span>
         </a>
         <button
@@ -87,8 +89,6 @@ const RSDSNavbar = () => {
               </Link>
             </li> */}
 
-
-
             <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -115,10 +115,7 @@ const RSDSNavbar = () => {
                 <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
                   <ul className="py-2 text-sm text-black">
                     <li className="hover:bg-gray-300">
-                      <a
-                        href="#"
-                        className="block px-4 py-2 "
-                      >
+                      <a href="#" className="block px-4 py-2 ">
                         Dashboard
                       </a>
                     </li>
@@ -168,10 +165,7 @@ const RSDSNavbar = () => {
                       )}
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 hover:bg-gray-300"
-                      >
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-300">
                         Earnings
                       </a>
                     </li>
@@ -186,4 +180,4 @@ const RSDSNavbar = () => {
   );
 };
 
-export default RSDSNavbar;
+export default RIASNavbar;

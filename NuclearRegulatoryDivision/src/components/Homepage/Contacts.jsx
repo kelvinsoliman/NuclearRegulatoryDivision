@@ -50,14 +50,23 @@ const Contacts = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setResponseMessage({ type: "success", text: result.message || "Feedback submitted successfully!" });
+        setResponseMessage({
+          type: "success",
+          text: result.message || "Feedback submitted successfully!",
+        });
         setFormData({ name: "", email: "", message: "" }); // Reset form
       } else {
-        setResponseMessage({ type: "error", text: result.message || "Submission failed." });
+        setResponseMessage({
+          type: "error",
+          text: result.message || "Submission failed.",
+        });
       }
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      setResponseMessage({ type: "error", text: "An error occurred. Please try again." });
+      setResponseMessage({
+        type: "error",
+        text: "An error occurred. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -68,9 +77,17 @@ const Contacts = () => {
       {/* Main Content */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         {/* Left Section (Logos) */}
-        <div className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4" data-aos="fade-right">
+        <div
+          className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
+          data-aos="fade-right"
+        >
           {[logo1, logo2, logo3, logo4].map((logo, index) => (
-            <img key={index} src={logo} alt={`Logo ${index + 1}`} className="h-20 w-20 md:h-30 md:w-30 rounded-full" />
+            <img
+              key={index}
+              src={logo}
+              alt={`Logo ${index + 1}`}
+              className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            />
           ))}
         </div>
 
@@ -79,8 +96,11 @@ const Contacts = () => {
           <h1 className="pt-10 text-indigo-600 text-xl md:text-4xl font-bold capitalize">
             Your Feedback is Important to Us
           </h1>
-          
-          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg mt-6">
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-xl shadow-lg mt-6"
+          >
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold">Name</label>
               <input
@@ -104,7 +124,9 @@ const Contacts = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">Message</label>
+              <label className="block text-gray-700 font-semibold">
+                Message
+              </label>
               <textarea
                 name="message"
                 value={formData.message}
@@ -117,7 +139,11 @@ const Contacts = () => {
 
             {/* Response Message */}
             {responseMessage && (
-              <p className={`text-white px-10 font-semibold p-3 w-full bg-${responseMessage.type === "error" ? "red-600" : "green-600"} mb-2 rounded-3xl`}>
+              <p
+                className={` px-10 font-semibold p-3 w-full text-${
+                  responseMessage.type === "error" ? "red" : "green"
+                } mb-2 rounded-3xl`}
+              >
                 {responseMessage.text}
               </p>
             )}

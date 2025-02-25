@@ -61,12 +61,12 @@ const InteractSection = () => {
     {
       img: "src/assets/regulation (1).png",
       text: "Nuclear Safeguards and Security Section (NSSS)",
-      link: "bulletin.php",
+      link: "/Nsss",
     },
     {
       img: "src/assets/data-science.png",
       text: "Radiological Impact Assessment Section (RIAS)",
-      link: "information.php",
+      link: "/Rias",
     },
   ];
 

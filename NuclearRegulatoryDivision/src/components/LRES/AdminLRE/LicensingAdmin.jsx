@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LresNavbar from "./LresNavbar";
-import LresHero from "./LresHero";
-import LresFooter from "./LresFooter";
-import logo1 from "../../assets/BP-LOGO-BT.png";
-import logo2 from "../../assets/foi_logo.png";
-import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png";
+import logo1 from "../../../assets/BP-LOGO-BT.png";
+import logo2 from "../../../assets/foi_logo.png";
+import logo3 from "../../../assets/INSO_Thumbnail.png";
+import logo4 from "../../../assets/AEW52_Thumbnail.png";
 
-const LicensingApplication = () => {
+const LicensingAdmin = () => {
   const [appList, setApplist] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [applicationName, setApplicationName] = useState("");
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
@@ -37,6 +36,47 @@ const LicensingApplication = () => {
 
     fetchLicenses();
   }, []);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!applicationName || !file) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("application_name", applicationName);
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:5175/LicensingAdmin", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Failed to upload file");
+
+      const result = await response.json();
+      console.log("File uploaded successfully:", result);
+
+      // Refresh the list of licenses
+      const res = await fetch("http://localhost:5175/licensing");
+      const data = await res.json();
+      setApplist(data);
+
+      // Clear the form
+      setApplicationName("");
+      setFile(null);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setError(error.message);
+    }
+  };
 
   if (loading) {
     return (
@@ -80,9 +120,6 @@ const LicensingApplication = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
-      <LresHero />
-      <LresNavbar />
-
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         <div
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
@@ -105,6 +142,39 @@ const LicensingApplication = () => {
             authorized in a license. Application forms for new, renewal, and
             amendment for specific licensed activities can be obtained below.
           </p>
+
+          {/* File Upload Form */}
+          <form onSubmit={handleSubmit} className="mt-6">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Application Name
+              </label>
+              <input
+                type="text"
+                value={applicationName}
+                onChange={(e) => setApplicationName(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Upload File
+              </label>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Upload
+            </button>
+          </form>
 
           <div
             className="mt-6 border rounded-lg overflow-hidden shadow-lg"
@@ -135,10 +205,8 @@ const LicensingApplication = () => {
           </div>
         </div>
       </section>
-
-      <LresFooter />
     </div>
   );
 };
 
-export default LicensingApplication;
+export default LicensingAdmin;

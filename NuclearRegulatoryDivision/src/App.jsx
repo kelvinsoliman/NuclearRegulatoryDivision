@@ -17,6 +17,11 @@ import Contacts from "./components/Homepage/Contacts";
 import LresRating from "./components/LRES/LresRating";
 import Rsds from "./components/RSDS/Rsds";
 import Achievements from "./components/LRES/Achievements";
+import Nsss from "./components/NSSS/Nsss";
+import Rias from "./components/RIAS/Rias";
+import Activities from "./components/Homepage/Activities";
+import LicensingAdmin from "./components/LRES/AdminLRE/LicensingAdmin";
+import Article from "./components/Homepage/Article";
 
 function App() {
   return (
@@ -47,6 +52,9 @@ function App() {
           <Route path="/MissionVision" element={<MissionVision />} />
           <Route path="/Rsds" element={<Rsds />} />
           <Route path="/Achievements" element={<Achievements />} />
+          <Route path="/Nsss" element={<Nsss />} />
+          <Route path="/Rias" element={<Rias />} />
+          <Route path="/LicensingAdmin" element={<LicensingAdmin />} />
 
           <Route
             path="/Contacts"
@@ -63,7 +71,17 @@ function App() {
             element={
               <>
                 <HeroSection />
-                <Achievements/>
+                <Activities />
+              </>
+            }
+          />
+
+          <Route
+            path="/Article"
+            element={
+              <>
+                <HeroSection />
+                <Article />
               </>
             }
           />

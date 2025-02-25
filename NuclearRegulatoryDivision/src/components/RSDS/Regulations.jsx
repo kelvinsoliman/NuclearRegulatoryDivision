@@ -104,7 +104,10 @@ const Regulations = () => {
             </div>
 
             {/* Regulatory Guides Table */}
-            <div className="overflow-x-auto rounded-lg shadow-lg" data-aos="fade-up">
+            <div
+              className="overflow-x-auto rounded-lg shadow-lg"
+              data-aos="fade-up"
+            >
               <table className="min-w-full bg-white">
                 <thead className="bg-gray-800 text-white">
                   <tr>

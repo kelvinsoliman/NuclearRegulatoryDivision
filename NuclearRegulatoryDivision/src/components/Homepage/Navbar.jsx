@@ -20,7 +20,10 @@ const Navbar = () => {
     <div className=" w-full mx-auto h-24 px-4 flex items-center justify-between  bg-slate-950  text-white">
       <div className="flex items-center justify-center gap-2.5">
         <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
-        <a href="https://www.pnri.dost.gov.ph/" className="font-bold text-white text-2xl hidden md:block">
+        <a
+          href="https://www.pnri.dost.gov.ph/"
+          className="font-bold text-white text-2xl hidden md:block"
+        >
           Nuclear Regulatory Division
         </a>
       </div>
@@ -35,6 +38,11 @@ const Navbar = () => {
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <Link to="/Activities">Activities</Link>
         </li>
+        
+        <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
+          <Link to="/Article">Blog</Link>
+        </li>
+
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <Link to="/Contacts">Contact</Link>
         </li>
@@ -55,16 +63,21 @@ const Navbar = () => {
         <h1 className="font-bold text-2xl m-5">Nuclear Regulatory Division</h1>
         <ul className="uppercase">
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
-            <a href="#">About</a>
+            <Link to="#aboutus">About</Link>
           </li>
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
-            <a href="#">Members</a>
+            <Link to="/Activities">Activities</Link>
           </li>
+
+          <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
+            <Link to="/Article">Blog</Link>
+          </li>
+
           <li className="p-4  hover:bg-slate-800 ease-in-out duration-500">
-            <a href="#">Contact</a>
+            <Link to="/Contacts">Contact</Link>
           </li>
         </ul>
       </div>
