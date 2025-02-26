@@ -5,7 +5,7 @@ import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
-import blog1 from "../../assets/BLOG1.png";
+import blog1 from "../../assets/blog.png";
 import HeroSection from "./HeroSection";
 
 const Article = () => {
@@ -204,7 +204,7 @@ const Article = () => {
               Research Institute (DOST-PNRI) is calling Filipino secondary
               students aged 15–20 from private and public schools across the
               country to register for the 2nd Philippine Nuclear Science
-              Olympiad (PNSO), to be held this April 03, 2025.
+              Olympiad (PNSO), to be held this April 03, 2025
             </p>
             <p className="text-gray-700 text-lg mt-4 px-10">
               This nationwide competition aims to identify and train the next

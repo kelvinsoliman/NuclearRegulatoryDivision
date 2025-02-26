@@ -5,9 +5,9 @@ import LresNavbar from "./LresNavbar";
 import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png";
 import LresHero from "./LresHero";
-import LresFooter from "./LresFooter";
+import LresFooter from "./LresFooter";import logo4 from "../../assets/AEW52_Thumbnail.png";
+
 import LresRating from "./LresRating";
 
 const Lres = () => {

@@ -8,7 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { data } from "react-router-dom";
 
-const Regulations = () => {
+const RSDSGuidelines = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
     fetchGuides();
@@ -21,7 +21,7 @@ const Regulations = () => {
 
   const fetchGuides = async () => {
     try {
-      const response = await fetch("http://localhost:5175/Regulations");
+      const response = await fetch("http://localhost:5175/Guidelines");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -34,7 +34,6 @@ const Regulations = () => {
       setLoading(false);
     }
   };
-
 
   const filteredGuides = guides.filter(
     (guide) =>
@@ -72,7 +71,7 @@ const Regulations = () => {
                 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4"
                 data-aos="zoom-in"
               >
-                📖 Code of PNRI Regulations
+                📖 Regulatory Guidelines
               </h2>
               <p className="text-lg text-gray-600 mb-8" data-aos="zoom-in">
                 Providing guidance on compliance with PNRI regulations.
@@ -166,4 +165,4 @@ const Regulations = () => {
   );
 };
 
-export default Regulations;
+export default RSDSGuidelines;

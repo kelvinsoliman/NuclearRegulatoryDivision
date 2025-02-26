@@ -22,6 +22,7 @@ import Rias from "./components/RIAS/Rias";
 import Activities from "./components/Homepage/Activities";
 import LicensingAdmin from "./components/LRES/AdminLRE/LicensingAdmin";
 import Article from "./components/Homepage/Article";
+import RSDSGuidelines from "./components/RSDS/RSDSGuidelines";
 
 function App() {
   return (
@@ -82,6 +83,15 @@ function App() {
               <>
                 <HeroSection />
                 <Article />
+              </>
+            }
+          />
+
+          <Route
+            path="/Guidelines"
+            element={
+              <>
+                <RSDSGuidelines />
               </>
             }
           />
