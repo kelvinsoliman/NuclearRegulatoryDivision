@@ -56,7 +56,7 @@ const InteractSection = () => {
     {
       img: "src/assets/inspection.png",
       text: "Inspection and Enforcement Section (IES)",
-      link: "/regulations",
+      link: "/Ies",
     },
     {
       img: "src/assets/regulation (1).png",

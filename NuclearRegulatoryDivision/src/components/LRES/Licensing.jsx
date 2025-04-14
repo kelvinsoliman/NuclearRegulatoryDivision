@@ -54,30 +54,6 @@ const LicensingApplication = () => {
     );
   }
 
-  const handleDownload = async (licenseId, fileName) => {
-    try {
-      const response = await fetch(
-        `http://localhost:5175/licensing/${licenseId}`,
-        {
-          method: "GET",
-        }
-      );
-
-      if (!response.ok) throw new Error("Failed to download file");
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName || "downloaded_file";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error("Error downloading file:", error);
-    }
-  };
-
   return (
     <div className="bg-gray-100 text-gray-900">
       <LresHero />
@@ -102,7 +78,7 @@ const LicensingApplication = () => {
             Under the existing laws and regulations, any person who intends to
             import, receive, acquire, possess, produce, store, or use a
             radioactive material for beneficial and peaceful purposes must be
-            authorized in a license. Application forms for new, renewal, and
+            authorized in a license. Application forms for new, renewal, and  
             amendment for specific licensed activities can be obtained below.
           </p>
 
@@ -117,10 +93,10 @@ const LicensingApplication = () => {
               {appList.length > 0 ? (
                 appList.map((license) => (
                   <a
-                    href={`http://localhost:5175/licensing/${license.id}`}
+
+                    href={license.url}
                     key={license.id}
-                    className="flex items-center p-4 bg-gray-100 hover:bg-gray-200 hover:font-bold ease-in-out duration-500 hover:text-gray-500"
-                    download
+                    className="flex items-center w-full p-4 bg-gray-100 hover:bg-gray-200 hover:font-bold ease-in-out duration-500 hover:text-gray-500 text-left cursor-pointer"
                   >
                     <span className="mr-3 text-blue-500 text-xl">📄</span>
                     {license.application_name}

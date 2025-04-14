@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import bg1 from "../../assets/PNRI_2.jpg";
 import bg2 from "../../assets/BP-LOGO-BT.png";
-import bg3 from "../../assets/INSO_Thumbnail.png";
+import bg3 from "../../assets/nrd.jpg";
 
 const images = [bg1, bg2, bg3]; // Array of images
 

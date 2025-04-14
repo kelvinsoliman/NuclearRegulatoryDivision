@@ -49,27 +49,26 @@ const Rsds = () => {
 
   const responsibilities = [
     {
-      title: "License Application Review",
+      title: "Develop regulations and regulatory issuances",
       description:
-        "Evaluating applications for nuclear materials, ensuring compliance with national and international safety standards.",
+        "Develop, or revise regulations, administrative orders, regulatory guides and other regulatory issuances relevant to safety, security and safeguards.",
       icon: "📄",
     },
     {
-      title: "Safety Assessments",
+      title: "Strengthen legal framework ",
       description:
-        "Conducting safety and risk assessments for nuclear-related activities and facilities.",
+        "Provide technical assistance to the legislative process of the proposed comprehensive nuclear law and other relevant bill.",
       icon: "🛡️",
     },
     {
-      title: "Regulatory Compliance",
-      description:
-        "Ensuring all nuclear-related operations adhere to PNRI's licensing requirements and regulations.",
+      title: "Conduct public consultation and stakeholder's engagement",
+      description: "Promote transparency on regulatory requirements ",
       icon: "✅",
     },
     {
-      title: "Technical Evaluations",
+      title: "Research on international standards and best practices ",
       description:
-        "Reviewing technical documentation to validate the safety of nuclear applications.",
+        "Conduct research on technical requirements and standards suitable for the country’s regulatory infrastructure.",
       icon: "📊",
     },
   ];
@@ -137,9 +136,11 @@ const Rsds = () => {
             About RSDS
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            RSDS formulates nuclear safety policy, develops and establishes
-            nuclear regulations, guides and criteria consistent with
-            internationally acceptable guidelines and best practices.
+            The Regulations and Standards Development Section (RSDS) plans,
+            programs, coordinates and carries out the development of
+            regulations, orders, standards, criteria, guides, and other
+            regulatory issuances for the peaceful use of nuclear and radioactive
+            materials, including its associated facilities and activities.
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">

@@ -48,7 +48,7 @@ const NSSSNavbar = () => {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
-                to="/Rsds"
+                to="/Nsss"
                 className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
               >
                 Home
@@ -57,20 +57,20 @@ const NSSSNavbar = () => {
 
             <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
-                to="/Regulations"
+                to="/NSSSContact"
                 className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0"
               >
-                Regulations
+                Contact 
               </Link>
             </li>
-            <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
+            {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
                 to="/LresServices"
                 className="block py-2 px-3 text-black rounded-sm md:p-0"
               >
                 Services
               </Link>
-            </li>
+            </li> */}
             {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
                 to="/ReviewEvaluation"
@@ -89,7 +89,7 @@ const NSSSNavbar = () => {
               </Link>
             </li> */}
 
-            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
+            {/* <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center justify-between w-full py-2 px-3 text-black hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto  md:dark:hover:text-blue-500 dark:focus:text-white"
@@ -172,7 +172,7 @@ const NSSSNavbar = () => {
                   </ul>
                 </div>
               )}
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

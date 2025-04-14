@@ -6,18 +6,17 @@ import RSDSNavbar from "./RSDSNavbar";
 import img1 from "../../assets/PNRI_Logo.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { data } from "react-router-dom";
 
 const RSDSGuidelines = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-    fetchGuides();
-  }, []);
-
   const [searchQuery, setSearchQuery] = useState("");
   const [guides, setGuides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    fetchGuides();
+  }, []);
 
   const fetchGuides = async () => {
     try {
@@ -27,7 +26,6 @@ const RSDSGuidelines = () => {
       }
       const data = await response.json();
       setGuides(data);
-      console.log(guides);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -37,11 +35,10 @@ const RSDSGuidelines = () => {
 
   const filteredGuides = guides.filter(
     (guide) =>
-      guide.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      guide.description.toLowerCase().includes(searchQuery.toLowerCase())
+      guide.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      guide.description?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log(filteredGuides);
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <RSDSHeroSection />
@@ -51,7 +48,7 @@ const RSDSGuidelines = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8">
           {/* Left Side - Logos */}
           <div
-            className="lg:w-1/3 flex flex-col items-center justify-center"
+            className="lg:w-1/3 hidden md:flex flex-col items-center justify-center"
             data-aos="fade-right"
           >
             {[...Array(4)].map((_, index) => (
@@ -104,56 +101,59 @@ const RSDSGuidelines = () => {
                 className="overflow-x-auto rounded-lg shadow-lg"
                 data-aos="fade-up"
               >
-                <table className="min-w-full bg-white">
-                  <thead className="bg-gray-800 text-white">
-                    <tr>
-                      <th className="px-6 py-4 text-left font-semibold">
-                        Title No.
-                      </th>
-                      <th className="px-6 py-4 text-left font-semibold">
-                        Description
-                      </th>
-                      <th className="px-6 py-4 text-center font-semibold">
-                        Link
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredGuides.length > 0 ? (
-                      filteredGuides.map((guide) => (
-                        <tr
-                          key={guide.id}
-                          className="border-t hover:bg-gray-50 transition-colors duration-200"
-                          data-aos="fade-up"
-                        >
-                          <td className="px-6 py-4 text-gray-700 font-medium">
-                            {guide.title}
-                          </td>
-                          <td className="px-6 py-4 text-gray-600">
-                            {guide.description}
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            <a
-                              href={guide.link}
-                              className="text-blue-500 font-semibold hover:underline flex justify-center items-center"
-                            >
-                              <FileText size={20} className="mr-2" /> View
-                            </a>
+                <div className="h-80 overflow-auto">
+                  <table className="min-w-full bg-white">
+                    <thead className="bg-gray-800 text-white sticky top-0">
+                      <tr>
+                        <th className="px-6 py-4 text-left font-semibold">
+                          Title No.
+                        </th>
+                        <th className="px-6 py-4 text-left font-semibold">
+                          Description
+                        </th>
+                        <th className="px-6 py-4 text-center font-semibold">
+                          Link
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredGuides.length > 0 ? (
+                        filteredGuides.map((guide) => (
+                          <tr
+                            key={guide.id}
+                            className="border-t hover:bg-gray-50 transition-colors duration-200"
+                          >
+                            <td className="px-6 py-4 text-gray-700 font-medium">
+                              {guide.title}
+                            </td>
+                            <td className="px-6 py-4 text-gray-600">
+                              {guide.description}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              <a
+                                href={guide.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 font-semibold hover:underline flex justify-center items-center"
+                              >
+                                <FileText size={20} className="mr-2" /> View
+                              </a>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td
+                            colSpan="3"
+                            className="text-center text-gray-600 py-4"
+                          >
+                            No results found.
                           </td>
                         </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td
-                          colSpan="3"
-                          className="text-center text-gray-600 py-4"
-                        >
-                          No results found.
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>

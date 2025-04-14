@@ -89,7 +89,7 @@ const RIASNavbar = () => {
               </Link>
             </li> */}
 
-            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
+            {/* <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center justify-between w-full py-2 px-3 text-black hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto  md:dark:hover:text-blue-500 dark:focus:text-white"
@@ -172,7 +172,7 @@ const RIASNavbar = () => {
                   </ul>
                 </div>
               )}
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

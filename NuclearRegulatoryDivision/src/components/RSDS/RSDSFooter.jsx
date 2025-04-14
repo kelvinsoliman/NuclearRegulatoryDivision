@@ -73,7 +73,7 @@ const RSDSFooter = () => {
             <h3 className="text-xl font-bold text-blue-500">Follow Us</h3>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/pnri.nrdofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition duration-300"

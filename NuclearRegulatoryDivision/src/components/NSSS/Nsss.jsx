@@ -49,27 +49,27 @@ const Nsss = () => {
 
   const responsibilities = [
     {
-      title: "License Application Review",
+      title: "Coordinates and Carries Out Inspections",
       description:
-        "Evaluating applications for nuclear materials, ensuring compliance with national and international safety standards.",
+        "Coordinates and carries out detailed inspections in support of international nuclear safeguards commitments. These inspections ensure that nuclear materials are used for peaceful purposes and not diverted for illegal or unauthorized activities. Through these rigorous checks, transparency is maintained, fostering trust between nations involved in nuclear energy production.",
       icon: "📄",
     },
     {
-      title: "Safety Assessments",
+      title: "Involved in the pyhsical protection of nuclear facilities",
       description:
-        "Conducting safety and risk assessments for nuclear-related activities and facilities.",
+        "NSSS is deeply involved in the physical protection of nuclear facilities and radioactive materials. By    implementing state-of-the-art security measures and working alongside international agencies, NSSS safeguards critical infrastructure against potential threats, ensuring that nuclear power generation, research, and other activities continue safely and securely.",
       icon: "🛡️",
     },
     {
-      title: "Regulatory Compliance",
+      title: "Coordinates and oversees the implementation of foreign-assisted projects",
       description:
-        "Ensuring all nuclear-related operations adhere to PNRI's licensing requirements and regulations.",
+        "NSSS also coordinates and oversees the implementation of foreign-assisted projects focused on nuclear security. These projects strengthen the security frameworks of countries worldwide by providing assistance, expertise, and resources to enhance nuclear security capabilities and address emerging challenges. Through collaboration and knowledge-sharing, NSSS contributes to a safer, more secure nuclear landscape on a global scale.",
       icon: "✅",
     },
     {
-      title: "Technical Evaluations",
+      title: "Security, and International Cooperation",
       description:
-        "Reviewing technical documentation to validate the safety of nuclear applications.",
+        "security, and international cooperation, NSSS upholds nuclear security standards, supports global safeguards efforts, and contributes to a world where nuclear materials and facilities are protected for the benefit of all.",
       icon: "📊",
     },
   ];
@@ -77,9 +77,9 @@ const Nsss = () => {
   return (
     <div className="bg-gray-100 text-gray-900">
       {/* HERO */}
-      <NSSSHero/>
+      <NSSSHero />
       {/* NAVBAR */}
-      <NSSSNavbar/>
+      <NSSSNavbar />
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         {/* Left Section (Logos) */}
@@ -135,11 +135,14 @@ const Nsss = () => {
             About NSSS
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            NSSS coordinates and carries out inspections in support of
-            international nuclear safeguards commitment and the physical
-            protection of nuclear and other radioactive materials and
-            facilities, and coordinates the implementation of foreign-assisted
-            projects on nuclear security.{" "}
+            plays a pivotal role in ensuring the safety, security, and
+            safeguarding of nuclear materials and facilities around the world.
+            The organization is committed to supporting international nuclear
+            safeguards efforts and the physical protection of nuclear and other
+            radioactive materials. The mission is to prevent the unauthorized
+            use of nuclear technology and materials by coordinating
+            comprehensive inspections, monitoring, and assessments in line with
+            global standards and regulatory frameworks.
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
@@ -166,7 +169,7 @@ const Nsss = () => {
         </div>
       </section>
       {/* Footer */}
-      <NSSSFooter/>
+      <NSSSFooter />
     </div>
   );
 };

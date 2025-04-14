@@ -1,177 +1,172 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
-import logo2 from "../../assets/foi_logo.png";
-import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png";
-import FullCalendar from "@fullcalendar/react"; // FullCalendar library
-import dayGridPlugin from "@fullcalendar/daygrid"; // Plugin for month view
-import interactionPlugin from "@fullcalendar/interaction"; // Plugin for interactivity
-import timeGridPlugin from "@fullcalendar/timegrid"; // Plugin for week/day view
+import axios from "axios";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
 
 const Activities = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
-  }, []);
-
-  const [events, setEvents] = useState([]); // State to store calendar events
+  const [events, setEvents] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     start: "",
     end: "",
     description: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Handle input changes for event form
+  useEffect(() => {
+    AOS.init({ 
+      duration: 1000, 
+      easing: "ease-in-out", 
+      once: true 
+    });
+    
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get("http://localhost:5175/Activities");
+      const formattedEvents = response.data.map(event => ({
+        ...event,
+        start: event.start ? new Date(event.start) : null,
+        end: event.end ? new Date(event.end) : null
+      }));
+      setEvents(formattedEvents);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      setError("Failed to fetch events. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission to add a new event
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Add the new event to the events array
-    const newEvent = {
-      title: formData.title,
-      start: formData.start,
-      end: formData.end,
-      description: formData.description,
-    };
-
-    setEvents([...events, newEvent]);
-    setFormData({ title: "", start: "", end: "", description: "" }); // Reset form
-  };
-
-  // Handle date click (optional: add event directly by clicking on the calendar)
-  const handleDateClick = (arg) => {
-    const title = prompt("Enter event title:");
-    if (title) {
-      const newEvent = { title, start: arg.dateStr, end: arg.dateStr };
-      setEvents([...events, newEvent]);
+    setLoading(true);
+    try {
+      const response = await axios.post("http://localhost:5175/Activities", formData);
+      setEvents(prev => [...prev, {
+        ...response.data,
+        start: response.data.start ? new Date(response.data.start) : null,
+        end: response.data.end ? new Date(response.data.end) : null
+      }]);
+      setFormData({ title: "", start: "", end: "", description: "" });
+    } catch (error) {
+      console.error("Error adding event:", error);
+      setError("Failed to add event. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="bg-gray-100 text-gray-900">
-      {/* Main Content with Logos and Calendar */}
-      <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
-        {/* Left Section (Logos) */}
-        <div
-          className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
-          data-aos="fade-right"
-        >
-          <img
-            src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6" data-aos="fade-down">
+        Event Calendar
+      </h1>
+      
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+      
+      {loading ? (
+        <div className="text-center py-8">Loading calendar...</div>
+      ) : (
+        <div className="bg-white shadow-md rounded-lg p-4 mb-6" data-aos="fade-up">
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay"
+            }}
+            events={events}
+            height="auto"
+            nowIndicator={true}
+            editable={true}
+            selectable={true}
           />
         </div>
+      )}
 
-        {/* Right Section (Calendar and Event Form) */}
-        <div className="md:w-2/3" data-aos="fade-left">
-          {/* Calendar */}
-          <div className="mb-8">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              events={events}
-              dateClick={handleDateClick} // Optional: Add event on date click
-              headerToolbar={{
-                left: "prev,next today",
-                center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay",
-              }}
+
+      <div className="bg-gray-100 shadow-lg rounded-lg p-6 max-w-lg mx-auto" data-aos="fade-up">
+        <h2 className="text-xl font-semibold text-center mb-4">Add New Event</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          {/* Event Form */}
-          <h1 className="text-indigo-600 text-xl md:text-4xl font-bold capitalize">
-            Add a New Event
-          </h1>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-6 rounded-xl shadow-lg mt-6"
-          >
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                Event Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Event Title"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                Start Date & Time
-              </label>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
               <input
                 type="datetime-local"
                 name="start"
                 value={formData.start}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
+                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                End Date & Time
-              </label>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">End Time</label>
               <input
                 type="datetime-local"
                 name="end"
                 value={formData.end}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
+                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                Description
-              </label>
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows="4"
-                placeholder="Event Description"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 ease-in-out duration-500"
-            >
-              Add Event
-            </button>
-          </form>
-        </div>
-      </section>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              rows={3}
+              className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            ></textarea>
+          </div>
+          
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 px-4 rounded font-bold text-white ${loading ? 'bg-blue-400' : 'bg-blue-500 hover:bg-blue-600'}`}
+          >
+            {loading ? 'Adding Event...' : 'Add Event'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

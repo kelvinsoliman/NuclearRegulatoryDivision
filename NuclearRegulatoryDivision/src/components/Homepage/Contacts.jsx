@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Mail, MessageSquare, User, Send } from "lucide-react";
 import logo1 from "../../assets/BP-LOGO-BT.png";
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
@@ -12,154 +13,169 @@ const Contacts = () => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate required field
     if (!formData.message.trim()) {
       setResponseMessage({ type: "error", text: "Message is required." });
       return;
     }
-
     setLoading(true);
-    setResponseMessage(null);
-
+    setResponseMessage(null); 
     try {
       const response = await fetch("http://localhost:5175/Contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       const result = await response.json();
-
       if (response.ok) {
-        setResponseMessage({
-          type: "success",
-          text: result.message || "Feedback submitted successfully!",
-        });
-        setFormData({ name: "", email: "", message: "" }); // Reset form
+        setResponseMessage({ type: "success", text: "Thank you! Your feedback has been submitted successfully." });
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setResponseMessage({
-          type: "error",
-          text: result.message || "Submission failed.",
-        });
+        setResponseMessage({ type: "error", text: "Submission failed. Please try again later." });
       }
     } catch (error) {
-      console.error("Error submitting feedback:", error);
-      setResponseMessage({
-        type: "error",
-        text: "An error occurred. Please try again.",
-      });
+      setResponseMessage({ type: "error", text: "An error occurred. Please try again." });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-gray-100 text-gray-900">
-      {/* Main Content */}
-      <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
-        {/* Left Section (Logos) */}
-        <div
-          className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
-          data-aos="fade-right"
-        >
-          {[logo1, logo2, logo3, logo4].map((logo, index) => (
-            <img
-              key={index}
-              src={logo}
-              alt={`Logo ${index + 1}`}
-              className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-            />
-          ))}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Left Side - Logos and Info */}
+          <div className="lg:w-1/3" data-aos="fade-right">
+            <div className="bg-white p-8 rounded-xl shadow-md">
+              <h2 className="text-2xl font-bold text-indigo-700 mb-6">Connect With Us</h2>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-3 rounded-full mr-4">
+                    <Mail className="text-indigo-600" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Email Us</h3>
+                    <p className="text-gray-600">feedback@example.com</p>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Our Partners</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[logo1, logo2, logo3, logo4].map((logo, index) => (
+                      <div key={index} className="bg-gray-50 p-4 rounded-lg flex items-center justify-center">
+                        <img 
+                          src={logo} 
+                          alt={`Partner Logo ${index + 1}`} 
+                          className="h-16 w-auto object-contain" 
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Form */}
+          <div className="lg:w-2/3" data-aos="fade-left">
+            <div className="bg-white p-8 rounded-xl shadow-md">
+              <h1 className="text-3xl font-bold text-indigo-700 mb-2">Your Feedback Matters</h1>
+              <p className="text-gray-600 mb-8">We'd love to hear your thoughts, suggestions, or concerns.</p>
+
+              {responseMessage && (
+                <div className={`mb-6 p-4 rounded-lg ${
+                  responseMessage.type === "success" 
+                    ? "bg-green-50 text-green-800 border border-green-200" 
+                    : "bg-red-50 text-red-800 border border-red-200"
+                }`}>
+                  {responseMessage.text}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-1">
+                  <label htmlFor="name" className="flex items-center text-sm font-medium text-gray-700">
+                    <User className="mr-2" size={16} /> Name (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label htmlFor="email" className="flex items-center text-sm font-medium text-gray-700">
+                    <Mail className="mr-2" size={16} /> Email (Optional)
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label htmlFor="message" className="flex items-center text-sm font-medium text-gray-700">
+                    <MessageSquare className="mr-2" size={16} /> Your Feedback
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    rows="5"
+                    placeholder="Share your thoughts with us..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors ${
+                    loading ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {loading ? (
+                    "Submitting..."
+                  ) : (
+                    <>
+                      <Send className="mr-2" size={18} />
+                      Submit Feedback
+                    </>
+                  )}
+                </button>
+              </form>
+
+              <div className="mt-10">
+                <LresRating />
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Right Section (Text Content) */}
-        <div className="md:w-2/3" data-aos="fade-left">
-          <h1 className="pt-10 text-indigo-600 text-xl md:text-4xl font-bold capitalize">
-            Your Feedback is Important to Us
-          </h1>
-
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-6 rounded-xl shadow-lg mt-6"
-          >
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your Name (Optional)"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your Email (Optional)"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-semibold">
-                Message
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows="4"
-                placeholder="Your Feedback"
-              ></textarea>
-            </div>
-
-            {/* Response Message */}
-            {responseMessage && (
-              <p
-                className={` px-10 font-semibold p-3 w-full text-${
-                  responseMessage.type === "error" ? "red" : "green"
-                } mb-2 rounded-3xl`}
-              >
-                {responseMessage.text}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-blue-400 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 ease-in-out duration-500"
-              disabled={loading}
-            >
-              {loading ? "Submitting..." : "Submit Feedback"}
-            </button>
-          </form>
-
-          <LresRating />
-        </div>
-      </section>
+      </div>
     </div>
   );
 };

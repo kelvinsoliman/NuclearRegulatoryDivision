@@ -71,7 +71,7 @@ const Achievements = () => {
 
         <div className="max-w-4xl mx-auto p-6" data-aos="fade-left">
           <h1 className="text-3xl font-bold text-indigo-600">
-            Our Achievements
+            Our Accomplishment
           </h1>
           <p className="mt-2 text-gray-600">
             We are proud to showcase our accomplishments and milestones that

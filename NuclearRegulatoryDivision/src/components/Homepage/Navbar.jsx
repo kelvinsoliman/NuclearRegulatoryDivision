@@ -30,16 +30,16 @@ const Navbar = () => {
 
       <ul className="hidden md:flex gap-2.5">
         <li className="p-4 hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <Link to="/">Home</Link>
+          <Link to="https://www.pnri.dost.gov.ph/" target="_blank">Home</Link>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <a href="#aboutus">About</a>
+          <Link to="/">About</Link>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <Link to="/Activities">Activities</Link>
         </li>
         
-        <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
+        <li className="p-4 border-b border-slate-900 hover:bg-slate-800 rounded-md  ease-in-out duration-500">
           <Link to="/Article">Blog</Link>
         </li>
 
@@ -56,17 +56,17 @@ const Navbar = () => {
       <div
         className={
           !nav
-            ? "fixed left-0 top-0 bg-slate-950 h-full w-[60%] ease-in-out duration-500 md:hidden text-white"
+            ? "fixed z-[999] left-0 top-0 bg-slate-950 h-full w-[60%] ease-in-out duration-500 md:hidden text-white"
             : "fixed left-[-100%] top-0 h-full w-[60%] ease-in-out duration-500 md:hidden"
         }
       >
         <h1 className="font-bold text-2xl m-5">Nuclear Regulatory Division</h1>
         <ul className="uppercase">
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
-            <Link to="/">Home</Link>
+            <Link to="https://www.pnri.dost.gov.ph/">Home</Link>
           </li>
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
-            <Link to="#aboutus">About</Link>
+            <Link to="/">About</Link>
           </li>
           <li className="p-4 border-b border-slate-900 hover:bg-slate-800  ease-in-out duration-500">
             <Link to="/Activities">Activities</Link>
