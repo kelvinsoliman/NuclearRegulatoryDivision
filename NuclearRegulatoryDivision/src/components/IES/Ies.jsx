@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import LresNavbar from "./IesNavbar";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/placeholder.jpg"; 
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
@@ -51,6 +51,13 @@ const Ies = () => {
     }
   };
 
+  const images = [
+    {
+      img1: logo1,
+    }
+
+  ]
+
   const responsibilities = [
     {
       Link:"/inspectionpage",
@@ -98,46 +105,56 @@ const Ies = () => {
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
           data-aos="fade-right"
         >
+
+          {/* {images.map((img, index) => (
+            <img
+              key={index}  // Important: Add a unique key for each item in a list
+              src={img.img1}  // Changed from img1.logo1 to img.logo1
+              alt={`Logo ${index + 1}`}  // Better alt text
+              className="h-20 w-20 md:h-30 md:w-30"
+            />
+            
+          ))} */}
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo2}
+            src={logo1}
             alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo3}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo4}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo2}
+            src={logo1}
             alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo3}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo4}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
+            className="h-20 w-20 md:h-30 md:w-30 "
+          /> 
         </div>
 
         {/* Right Section (Text Content) */}

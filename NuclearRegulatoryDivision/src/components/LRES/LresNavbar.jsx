@@ -71,15 +71,6 @@ const Navbar = () => {
                 Services
               </Link>
             </li>
-            {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/ReviewEvaluation"
-                className="block py-2 px-3 text-black rounded-sm md:p-0"
-              >
-                Review & Evaluation
-              </Link>
-            </li>
- */}
 
             <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
@@ -90,90 +81,15 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center justify-between w-full py-2 px-3 text-black hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto  md:dark:hover:text-blue-500 dark:focus:text-white"
+            <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
+              <Link
+                to="/LresContacts"
+                className="block py-2 px-3 text-black rounded-sm md:p-0"
               >
-                See More
-                <svg
-                  className="w-2.5 h-2.5 ms-2.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 1 4 4 4-4"
-                  />
-                </svg>
-              </button>
-              {isDropdownOpen && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
-                  <ul className="py-2 text-sm text-black">
-                    <li className="hover:bg-gray-300">
-                      <a href="#" className="block px-4 py-2 ">
-                        Dashboard
-                      </a>
-                    </li>
-                    <li className="relative">
-                      <button
-                        onClick={() =>
-                          setIsDoubleDropdownOpen(!isDoubleDropdownOpen)
-                        }
-                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-300"
-                      >
-                        More
-                        <svg
-                          className="w-2.5 h-2.5 ms-2.5"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 10 6"
-                        >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m1 1 4 4 4-4"
-                          />
-                        </svg>
-                      </button>
-                      {isDoubleDropdownOpen && (
-                        <ul className="absolute left-full top-0 z-10 w-44 bg-white shadow-md rounded-lg py-2">
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-black hover:bg-gray-300"
-                            >
-                              Overview
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-black hover:bg-gray-300"
-                            >
-                              My Downloads
-                            </a>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                    <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-300">
-                        Earnings
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </li> */}
+                Contacts
+              </Link>
+            </li>
+
           </ul>
         </div>
       </div>

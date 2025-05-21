@@ -12,26 +12,24 @@ const LresServices = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Initialize animations
-    AOS.init({ 
-      duration: 1000, 
-      easing: "ease-in-out", 
-      once: true 
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
     });
 
     const fetchServices = async () => {
       try {
         const response = await fetch("http://localhost:5175/LresServices");
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setServices(data);
       } catch (error) {
-        console.error("Error fetching services:", error);
-        setError(error.message || "Failed to load services. Please try again later.");
+        setError(error.message || "Failed to load services.");
       } finally {
         setLoading(false);
       }
@@ -42,10 +40,9 @@ const LresServices = () => {
 
   const handleServiceSelect = (service) => {
     setSelectedService(service);
-    // Scroll to top of details section for better UX on mobile
     window.scrollTo({
       top: 400,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
 
@@ -61,7 +58,7 @@ const LresServices = () => {
     return (
       <div className="text-center py-10 text-red-500 bg-gray-100">
         <p>Error: {error}</p>
-        <button 
+        <button
           onClick={() => window.location.reload()}
           className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
@@ -77,44 +74,41 @@ const LresServices = () => {
       <LresNavbar />
 
       <div className="container mx-auto px-4 sm:px-6 py-16 flex flex-col lg:flex-row gap-6">
-        {/* Sidebar - Services List */}
-        <aside
-          className="w-full lg:w-1/4 bg-white shadow-lg rounded-lg p-4 sticky top-4"
-          data-aos="fade-right"
-        >
+        <aside className="w-full lg:w-1/4 bg-white shadow-lg rounded-lg p-4 sticky top-4">
           <h2 className="text-xl font-bold text-blue-600 mb-4">
-            Services Offered
+            License Application
           </h2>
           <div className="space-y-3">
             {services.map((service) => (
               <button
                 key={service.id}
                 onClick={() => handleServiceSelect(service)}
-                className={`w-full text-left p-2 rounded transition-colors ${selectedService?.id === service.id 
-                  ? "bg-blue-100 text-blue-700" 
-                  : "hover:bg-gray-100 text-gray-800"}`}
+                className={`w-full text-left p-2 rounded transition-colors ${
+                  selectedService?.id === service.id
+                    ? "bg-blue-100 text-blue-700"
+                    : "hover:bg-gray-100 text-gray-800"
+                }`}
               >
-                <h3 className="font-medium">
-                  {service.service_name}
-                </h3>
+                <h3 className="font-medium">{service.service_name}</h3>
               </button>
             ))}
           </div>
         </aside>
 
-        {/* Main Content - Service Details */}
-        <main
-          className="flex-1 bg-white p-6 rounded-lg shadow-lg"
-          data-aos="fade-left"
-        >
+        <main className="flex-1 bg-white p-6 rounded-lg shadow-lg">
           {selectedService ? (
             <div className="space-y-6">
               <div>
                 <h1 className="text-2xl font-bold text-blue-600">
-                  {selectedService.service_name}
+                  {selectedService.service_category}
                 </h1>
                 <p className="mt-2 text-gray-600">
-                  {selectedService.service_desc}
+                  Under the existing laws and regulations, any person who
+                  intends to import, receive, acquire, possess, produce, store,
+                  or use a radioactive material for beneficial and peaceful
+                  purposes must be authorized in a license. Application forms
+                  for new, renewal, and amendment for specific licensed
+                  activities can be obtained below.
                 </p>
               </div>
 
@@ -126,30 +120,24 @@ const LresServices = () => {
                   <table className="w-full border-collapse border border-gray-300">
                     <thead>
                       <tr className="bg-gray-200">
-                        <th className="border border-gray-300 p-2 text-left">Application Name</th>
-                        <th className="border border-gray-300 p-2 text-left">Notice</th>
+                        <th className="border border-gray-300 p-2 text-left">
+                          Application Name
+                        </th>
                         <th className="border border-gray-300 p-2">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="border border-gray-300">
                         <td className="border border-gray-300 p-3">
-                          <span className="text-gray-800">
-                            {selectedService.requirements}
-                          </span>
-                        </td>
-                        <td className="border border-gray-300 p-3">
-                          <p className="font-bold text-red-600">
-                            NOTE: EVERYTHING SHOULD BE CLEAR AND READABLE
-                          </p>
+                          {selectedService.application_name}
                         </td>
                         <td className="border border-gray-300 p-3 text-center">
-                          <a 
-                            href={selectedService.url} 
+                          <a
+                            href={selectedService.url}
                             download
-                            className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                            className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 hover:text-red-600 transition-colors"
                           >
-                            Download
+                            Link
                           </a>
                         </td>
                       </tr>
@@ -161,7 +149,7 @@ const LresServices = () => {
           ) : (
             <div className="text-center py-10">
               <p className="text-gray-600">
-                Please select a service from the left panel to view details.
+                Please select a service to view details.
               </p>
             </div>
           )}

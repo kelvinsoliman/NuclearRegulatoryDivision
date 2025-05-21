@@ -64,7 +64,7 @@ app.post("/AdminServices", (req, res) => {
         console.error("Database query error:", err);
         return res.status(500).json({ error: "Database query error" });
       }
-                                                                
+
       // Return the newly created entry
       res.status(201).json({
         id: results.insertId, // The auto-incremented ID of the new entry
@@ -78,14 +78,53 @@ app.post("/AdminServices", (req, res) => {
 });
 
 
-// api/send-email.js
-// const nodemailer = require('nodemailer');
+//Contacts
+
+app.post("/Contacts", (req, res) => {
+  const { name, email, message } = req.body;
+  
+  // Basic validation
+  if (!message) {
+    return res.status(400).json({ error: "Message is required" });
+  }
+  
+  // Optional email validation if email is provided
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: "Please provide a valid email address" });
+  }
+
+  const sql = "INSERT INTO contacts_tbl (name, email, message) VALUES (?, ?, ?)";
+  
+  db.query(sql, [name, email, message], (err, result) => {
+    if (err) {
+      console.error("Database error:", err);
+      return res.status(500).json({ error: "Failed to save contact message" });
+    }
+    
+    res.status(201).json({ 
+      success: true,
+      message: "Thank you for your feedback!",
+      data: {
+        id: result.insertId,
+        name,
+        email,
+        message
+      }
+    });
+  });
+});
+
+
+
+
+
+
 
 
 // SERVICES fetching
 
 app.get("/LresServices", (req, res) => {
-  const q = "SELECT * FROM services_tbl";
+  const q = "SELECT * FROM lresservices_tbl ORDER by service_name ASC" ;
 
   db.query(q, (err, results) => {
     if (err) {
@@ -97,54 +136,30 @@ app.get("/LresServices", (req, res) => {
   });
 });
 
-//Licensing
-// app.get("/licensing/:licenseId", (req, res) => {
-//   const licenseId = req.params.licenseId;
-//   const q = "SELECT url FROM licenseapp_tbl WHERE id = ?";
-
-//   db.query(q, [licenseId], (err, results) => {
-//     if (err) {
-//       console.error("Database query error:", err);
-//       return res.status(500).json({ error: "Database query error" });
-//     }
-
-//     if (results.length === 0) {
-//       console.error("File not found for license ID:", licenseId);
-//       return res.status(404).json({ error: "File not found" });
-//     }
-
-//     const filePath = results[0].url;
-
-//     // Construct the absolute path to the file
-//     const absoluteFilePath = path.join(__dirname, "uploads", filePath);
-
-//     // Check if file exists
-//     if (!fs.existsSync(absoluteFilePath)) {
-//       console.error("File does not exist at path:", absoluteFilePath);
-//       return res.status(404).json({ error: "File not found on server" });
-//     }
-
-//     // Send the file for download
-//     res.download(absoluteFilePath, (err) => {
-//       if (err) {
-//         console.error("Error sending file:", err);
-//         return res.status(500).json({ error: "Failed to download file" });
-//       }
-//     });
-//   });
-// });
-
 // ACHIEVEMENTS SECTION
 app.get("/Achievements", (req, res) => {
-  const q = "SELECT * FROM achievement_tbl";
-  db.query(q, (err, results) => {
+  const query = `
+    SELECT 
+      id,
+      title,
+      achievements AS description,
+      date_achieved AS date,
+      image_url AS imageUrl
+    FROM achievement_tbl
+    ORDER BY date_achieved DESC
+  `;
+
+  db.query(query, (err, results) => {
     if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({ error: "Database query error" });
+      console.error("Database error:", err);
+      return res.status(500).json({ error: "Failed to load achievements" });
     }
-    res.status(200).json(results.length > 0 ? results : []);
+    
+    // Return empty array if no results
+    res.json(results || []);
   });
 });
+
 
 // FEEDBACK
 app.post("/Contacts", (req, res) => {
@@ -153,9 +168,8 @@ app.post("/Contacts", (req, res) => {
   if (!message) {
     return res.status(400).json({ message: "Message is required" });
   }
-
   const sql =
-    "INSERT INTO feedback_tbl (name, email, message) VALUES     (?, ?, ?)";
+    "INSERT INTO feedback_tbl (name, email, message) VALUES (?, ?, ?)";
   const values = [name || null, email || null, message];
 
   db.query(sql, values, (err, result) => {
@@ -169,8 +183,9 @@ app.post("/Contacts", (req, res) => {
   });
 });
 
-//Regulations
 
+
+//Regulations
 app.get("/Regulations", (req, res) => {
   console.log("Fetching regulations...");
 
@@ -277,7 +292,7 @@ app.get("/RSDSBulletin", (req, res) => {
   db.query(q, (err, results) => {
     if (err) {
       console.error("Database query error:", err.message);
-      
+
       return res
         .status(500)
         .json({ error: "Failed to fetch regulations", details: err.message });
@@ -297,7 +312,7 @@ app.get("/RSDSBulletin", (req, res) => {
 app.get("/RSDSAdminOrders", (req, res) => {
   console.log("Fetching Orders...");
 
-  const q = "SELECT * FROM rsdsadminorders_tbl ORDER BY id DESC;";
+  const q = "SELECT * FROM rsdsadminorders_tbl ORDER BY id ASC;";
 
   db.query(q, (err, results) => {
     if (err) {
@@ -314,13 +329,6 @@ app.get("/RSDSAdminOrders", (req, res) => {
   });
 });
 
-
-
-
-
-
-
-
 //ANNOUNCEMENT
 
 app.get("/RSDSAnnouncement", (req, res) => {
@@ -332,9 +340,7 @@ app.get("/RSDSAnnouncement", (req, res) => {
       title,
       announcement AS content,
       date,
-      priority,
-      created_at,
-      updated_at
+      priority
     FROM rsdsannouncement_tbl 
     ORDER BY 
       CASE 
@@ -349,25 +355,26 @@ app.get("/RSDSAnnouncement", (req, res) => {
   db.query(q, (err, results) => {
     if (err) {
       console.error("Database query error:", err.message);
-      return res.status(500).json({ 
-        error: "Failed to fetch announcements", 
-        details: err.message 
+      return res.status(500).json({
+        error: "Failed to fetch announcements",
+        details: err.message,
       });
     }
-    
+
     // Format the results to match frontend expectations
-    const formattedResults = results.map(announcement => ({
+    const formattedResults = results.map((announcement) => ({
       id: announcement.id,
       title: announcement.title,
       announcement: announcement.content, // Using 'content' as the announcement text
       date: announcement.date,
-      priority: announcement.priority || 'general' // Default to 'general' if null
+      priority: announcement.priority || "general", // Default to 'general' if null
     }));
 
     console.log("Successfully fetched announcements");
     res.status(200).json(formattedResults);
   });
 });
+
 // Server Listener
 const PORT = process.env.PORT || 5175; // Use environment variable or default to 5175
 app.listen(PORT, () => {

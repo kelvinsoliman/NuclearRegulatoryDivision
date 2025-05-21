@@ -22,7 +22,7 @@ const DivisionHeads = () => {
             <div
               key={index}
               className="bg-white p-4 rounded-lg shadow-md text-center"
-            >
+            >f
               <img
                 src={head.image}
                 alt={head.name}

@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import LresNavbar from "./LresNavbar";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/placeholder.jpg"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import LresHero from "./LresHero";
-import LresFooter from "./LresFooter";import logo4 from "../../assets/AEW52_Thumbnail.png";
+import LresFooter from "./LresFooter";
+import logo4 from "../../assets/AEW52_Thumbnail.png";
+import header from "../../assets/pnriheader.png";
 
 import LresRating from "./LresRating";
+import Header from "../Homepage/Header";
 
 const Lres = () => {
   useEffect(() => {
@@ -77,62 +80,24 @@ const Lres = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
-      {/* HERO */}
+
+      <Header/>
       <LresHero />
 
-      {/* NAVBAR */}
       <LresNavbar />
 
-      {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
-        {/* Left Section (Logos) */}
         <div
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
           data-aos="fade-right"
         >
-          <img
-            src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          {/* <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          /> */}
-          {/* <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          /> */}
+          <img src={logo1} alt="Logo 1" className="h-20 w-20 md:h-30 md:w-30" />
+          <img src={logo1} alt="Logo 2" className="h-20 w-20 md:h-30 md:w-30" />
+          <img src={logo1} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30" />
+          <img src={logo1} alt="Logo 3" className="h-20 w-20 md:h-30 md:w-30" />
+          <img src={logo1} alt="Logo 1" className="h-20 w-20 md:h-30 md:w-30" />
         </div>
 
-        {/* Right Section (Text Content) */}
         <div className="md:w-2/3" data-aos="fade-left">
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left">
             About LRES
@@ -145,7 +110,6 @@ const Lres = () => {
             regulations and standards. LRES recommends the issuance of license
             and prepares the license thereof.
           </p>
-          {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
             Core Responsibilities
           </h2>
@@ -170,7 +134,6 @@ const Lres = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <LresFooter />
     </div>
   );

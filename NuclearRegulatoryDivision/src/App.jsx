@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./components/Homepage/Navbar";
 import HeroSection from "./components/Homepage/HeroSection";
 import ServicesSection from "./components/Homepage/ServicesSection";
@@ -36,7 +41,8 @@ import IesPermit from "./components/IES/IesPermit";
 import IesComplaint from "./components/IES/IesComplaint";
 import RsdsContact from "./components/RSDS/RsdsContact";
 import IesContact from "./components/IES/IesContact";
-
+import LresContacts from "./components/LRES/LresContacts";
+import Header from "./components/Homepage/Header";
 
 function App() {
   return (
@@ -60,9 +66,10 @@ function MainLayout() {
           path="/"
           element={
             <>
+              <Header />
               <HeroSection />
               <InteractSection />
-              <DivisionHeads />
+              {/* <DivisionHeads /> */}
               <VisitUs />
             </>
           }
@@ -85,17 +92,15 @@ function MainLayout() {
         <Route path="/RSDSAdminOrders" element={<RSDSAdminOrders />} />
         <Route path="/RSDSAnnouncement" element={<RSDSAnnouncement />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
-        <Route path="/NSSSContact" element={<NSSSContact/>} />
-        <Route path="/ies" element={<Ies/>} />
-        <Route path="/inspectionpage" element={<InspectionPage/>} />
-        <Route path="/IesPermit" element={<IesPermit/>} />
-        <Route path="/IesComplaint" element={<IesComplaint/>} />
-        <Route path="/RsdsContact" element={<RsdsContact/>} />
-        <Route path="/IesContact" element={<IesContact/>} />
+        <Route path="/NSSSContact" element={<NSSSContact />} />
+        <Route path="/ies" element={<Ies />} />
+        <Route path="/inspectionpage" element={<InspectionPage />} />
+        <Route path="/IesPermit" element={<IesPermit />} />
+        <Route path="/IesComplaint" element={<IesComplaint />} />
+        <Route path="/RsdsContact" element={<RsdsContact />} />
+        <Route path="/IesContact" element={<IesContact />} />
 
-
-            
-          {/* <Route path="/permit" element={ <Permit/>}/>
+        {/* <Route path="/permit" element={ <Permit/>}/>
           <Route path="/complaint" element={<Complaint/>}/>
           <Route path="/inspectionpage" element={<InspectionPage/>}/>
           <Route path="/Activities" element={<Activities />} />
@@ -105,6 +110,7 @@ function MainLayout() {
           path="/Contacts"
           element={
             <>
+              <Header />
               <HeroSection />
               <Contacts />
             </>
@@ -115,6 +121,7 @@ function MainLayout() {
           path="/Activities"
           element={
             <>
+              <Header />
               <HeroSection />
               <Activities />
             </>
@@ -125,8 +132,18 @@ function MainLayout() {
           path="/Article"
           element={
             <>
+              <Header />
               <HeroSection />
               <Article />
+            </>
+          }
+        />
+
+        <Route
+          path="/LresContacts"
+          element={
+            <>
+              <LresContacts />
             </>
           }
         />

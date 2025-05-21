@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Mail, Phone, Users, FileText } from "lucide-react";
-import NSSSHero from "./NSSSHero";
-import NSSSFooter  from "./NSSSFooter";
-import NSSSNavbar from "./NSSSNavbar";
+import LresFooter from "./LresFooter";
+import LresNavbar from "./LresNavbar";
+import LresHero from "./LresHero";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -14,39 +14,39 @@ const LresContacts = () => {
   const contacts = [
     {
       icon: <Mail className="text-blue-600" size={20} />,
-      title: "NSSS Main Email",
-      value: "nsss@pnri.gov.ph",
+      title: "LRES Main Email",
+      value: "nrd-lre@pnri.dost.gov.ph",
       description: "For general inquiries"
     },
     {
       icon: <Phone className="text-green-600" size={20} />,
-      title: "NSSS Office",
+      title: "LRES Office",
       value: "+63 (2) 1234-5678",
       description: "Local 123, Mon-Fri 8AM-5PM"
     },
     {
       icon: <Users className="text-purple-600" size={20} />,
-      title: "NSSS Director",
-      value: "director.nsss@pnri.gov.ph",
+      title: "LRES Director",
+      value: "director.lres@pnri.gov.ph",
       description: "For official matters"
     },
     {
       icon: <FileText className="text-orange-600" size={20} />,
       title: "Document Requests",
-      value: "nsss.docs@pnri.gov.ph",
+      value: "lres.docs@pnri.gov.ph",
       description: "For research documents"
     }
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <NSSSHero />
-      <NSSSNavbar />
+      <LresHero />
+      <LresNavbar />
 
       <div className="flex-1 py-12 px-4 max-w-4xl mx-auto w-full">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-800 mb-3" data-aos="fade-up">
-            NSSS Contact Information
+            LRES Contact Information
           </h1>
           <div className="w-16 h-1 bg-blue-500 mx-auto mb-4" data-aos="fade-up"></div>
           <p className="text-gray-600" data-aos="fade-up">
@@ -75,12 +75,12 @@ const LresContacts = () => {
         </div>
 
         <div className="mt-12 bg-white p-6 rounded-lg shadow-sm border border-gray-100" data-aos="fade-up">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">NSSS Office Location</h2>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">LRES Office Location</h2>
           <div className="flex flex-col sm:flex-row gap-6">
             <div className="flex-1">
               <p className="text-gray-700">
                 <span className="font-medium">Building:</span> NART<br />
-                <span className="font-medium">Floor No:</span> 3rd<br />
+                <span className="font-medium">Floor No.:</span> 3rd<br />
                 <span className="font-medium">Hours:</span> Monday-Friday, 8:00AM-5:00PM
               </p>
             </div>
@@ -89,9 +89,8 @@ const LresContacts = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <NSSSFooter />
+      </div>  
+      <LresFooter />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Mail, MessageSquare, User, Send } from "lucide-react";
-import logo1 from "../../assets/BP-LOGO-BT.png";
+import logo1 from "../../assets/placeholder.jpg";
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
@@ -13,7 +13,11 @@ const Contacts = () => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
 
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(null);
 
@@ -24,27 +28,51 @@ const Contacts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Basic validation
     if (!formData.message.trim()) {
       setResponseMessage({ type: "error", text: "Message is required." });
       return;
     }
+
+    // Email validation if email is provided
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setResponseMessage({
+        type: "error",
+        text: "Please enter a valid email address.",
+      });
+      return;
+    }
+
     setLoading(true);
-    setResponseMessage(null); 
+    setResponseMessage(null);
+
     try {
+      // Replace this URL with your actual API endpoint
       const response = await fetch("http://localhost:5175/Contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const result = await response.json();
-      if (response.ok) {
-        setResponseMessage({ type: "success", text: "Thank you! Your feedback has been submitted successfully." });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setResponseMessage({ type: "error", text: "Submission failed. Please try again later." });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const result = await response.json();
+      setResponseMessage({
+        type: "success",
+        text:
+          result.message ||
+          "Thank you! Your feedback has been submitted successfully.",
+      });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setResponseMessage({ type: "error", text: "An error occurred. Please try again." });
+      console.error("Submission error:", error);
+      setResponseMessage({
+        type: "error",
+        text: error.message || "An error occurred. Please try again later.",
+      });
     } finally {
       setLoading(false);
     }
@@ -57,8 +85,10 @@ const Contacts = () => {
           {/* Left Side - Logos and Info */}
           <div className="lg:w-1/3" data-aos="fade-right">
             <div className="bg-white p-8 rounded-xl shadow-md">
-              <h2 className="text-2xl font-bold text-indigo-700 mb-6">Connect With Us</h2>
-              
+              <h2 className="text-2xl font-bold text-indigo-700 mb-6">
+                Connect With Us
+              </h2>
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="bg-indigo-100 p-3 rounded-full mr-4">
@@ -71,14 +101,19 @@ const Contacts = () => {
                 </div>
 
                 <div className="pt-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Our Partners</h3>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    Our Partners
+                  </h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {[logo1, logo2, logo3, logo4].map((logo, index) => (
-                      <div key={index} className="bg-gray-50 p-4 rounded-lg flex items-center justify-center">
-                        <img 
-                          src={logo} 
-                          alt={`Partner Logo ${index + 1}`} 
-                          className="h-16 w-auto object-contain" 
+                    {[logo1, logo1, logo1, logo1].map((logo, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-50 p-4 rounded-lg flex items-center justify-center"
+                      >
+                        <img
+                          src={logo}
+                          alt={`Partner Logo ${index + 1}`}
+                          className="h-16 w-auto object-contain"
                         />
                       </div>
                     ))}
@@ -91,22 +126,31 @@ const Contacts = () => {
           {/* Right Side - Form */}
           <div className="lg:w-2/3" data-aos="fade-left">
             <div className="bg-white p-8 rounded-xl shadow-md">
-              <h1 className="text-3xl font-bold text-indigo-700 mb-2">Your Feedback Matters</h1>
-              <p className="text-gray-600 mb-8">We'd love to hear your thoughts, suggestions, or concerns.</p>
+              <h1 className="text-3xl font-bold text-indigo-700 mb-2">
+                Your Feedback Matters
+              </h1>
+              <p className="text-gray-600 mb-8">
+                We'd love to hear your thoughts, suggestions, or concerns.
+              </p>
 
               {responseMessage && (
-                <div className={`mb-6 p-4 rounded-lg ${
-                  responseMessage.type === "success" 
-                    ? "bg-green-50 text-green-800 border border-green-200" 
-                    : "bg-red-50 text-red-800 border border-red-200"
-                }`}>
+                <div
+                  className={`mb-6 p-4 rounded-lg ${
+                    responseMessage.type === "success"
+                      ? "bg-green-50 text-green-800 border border-green-200"
+                      : "bg-red-50 text-red-800 border border-red-200"
+                  }`}
+                >
                   {responseMessage.text}
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-1">
-                  <label htmlFor="name" className="flex items-center text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="name"
+                    className="flex items-center text-sm font-medium text-gray-700"
+                  >
                     <User className="mr-2" size={16} /> Name (Optional)
                   </label>
                   <input
@@ -121,7 +165,10 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="email" className="flex items-center text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="email"
+                    className="flex items-center text-sm font-medium text-gray-700"
+                  >
                     <Mail className="mr-2" size={16} /> Email (Optional)
                   </label>
                   <input
@@ -136,7 +183,10 @@ const Contacts = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="message" className="flex items-center text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="message"
+                    className="flex items-center text-sm font-medium text-gray-700"
+                  >
                     <MessageSquare className="mr-2" size={16} /> Your Feedback
                   </label>
                   <textarea
@@ -168,10 +218,6 @@ const Contacts = () => {
                   )}
                 </button>
               </form>
-
-              <div className="mt-10">
-                <LresRating />
-              </div>
             </div>
           </div>
         </div>

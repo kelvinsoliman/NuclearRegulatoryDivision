@@ -3,7 +3,7 @@ import { Search, FileText } from "lucide-react";
 import RSDSHeroSection from "./RSDSHeroSection";
 import RSDSFooter from "./RSDSFooter";
 import RSDSNavbar from "./RSDSNavbar";
-import img1 from "../../assets/PNRI_Logo.jpg";
+import img1 from "../../assets/placeholder.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -13,10 +13,13 @@ const Regulations = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
     fetchGuides();
   }, []);
+
 
   const fetchGuides = async () => {
     try {
@@ -56,7 +59,7 @@ const Regulations = () => {
                 key={index}
                 src={img1}
                 alt={`Logo ${index + 1}`}
-                className="w-32 h-32 rounded-full mb-6"
+                className="w-32 h-32  mb-6"
               />
             ))}
           </div>
@@ -101,7 +104,7 @@ const Regulations = () => {
                 className="overflow-x-auto rounded-lg shadow-lg"
                 data-aos="fade-up"
               >
-                <div className="h-80 overflow-auto">
+                <div className="h-[500px] overflow-auto">
                   <table className="min-w-full bg-white">
                     <thead className="bg-gray-800 text-white sticky top-0">
                       <tr>

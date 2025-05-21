@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/placeholder.jpg"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
@@ -91,43 +91,28 @@ const Rsds = () => {
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo2}
+            src={logo1}
             alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo3}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo4}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
-          {/* <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          /> */}
-          {/* <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          /> */}
         </div>
 
         {/* Right Section (Text Content) */}
