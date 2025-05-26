@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import LresNavbar from "./LresNavbar";
 import LresHero from "./LresHero";
 import LresFooter from "./LresFooter";
+import Header from "../Homepage/Header";
 
 const LresServices = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -70,6 +71,7 @@ const LresServices = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+      <Header/>
       <LresHero />
       <LresNavbar />
 

@@ -12,6 +12,7 @@ import RSDSFooter from "./RSDSFooter";
 import RSDSNavbar from "./RSDSNavbar";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Header from "../Homepage/Header";
 
 const RSDSAnnouncement = () => {
   useEffect(() => {
@@ -111,6 +112,7 @@ const RSDSAnnouncement = () => {
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen flex flex-col">
+      <Header/>
       <RSDSHeroSection />
       <RSDSNavbar />
 

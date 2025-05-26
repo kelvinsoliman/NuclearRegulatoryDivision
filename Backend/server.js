@@ -12,11 +12,11 @@ app.use(express.json());
 
 // Database Configuration
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "db_lres",
-  port: 3307,
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "db_lres",
+  port: process.env.DB_PORT || 3307,
 });
 
 // Database Connection Check
@@ -27,6 +27,8 @@ db.connect((err) => {
   }
   console.log("Connected to MySQL database");
 });
+
+const pool = mysql.createPool(db);
 
 // Fetch all license applications
 
@@ -77,88 +79,132 @@ app.post("/AdminServices", (req, res) => {
   );
 });
 
-
 //Contacts
 
 app.post("/Contacts", (req, res) => {
   const { name, email, message } = req.body;
-  
+
   // Basic validation
   if (!message) {
     return res.status(400).json({ error: "Message is required" });
   }
-  
+
   // Optional email validation if email is provided
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ error: "Please provide a valid email address" });
+    return res
+      .status(400)
+      .json({ error: "Please provide a valid email address" });
   }
 
-  const sql = "INSERT INTO contacts_tbl (name, email, message) VALUES (?, ?, ?)";
-  
+  const sql =
+    "INSERT INTO contacts_tbl (name, email, message) VALUES (?, ?, ?)";
+
   db.query(sql, [name, email, message], (err, result) => {
     if (err) {
       console.error("Database error:", err);
       return res.status(500).json({ error: "Failed to save contact message" });
     }
-    
-    res.status(201).json({ 
+
+    res.status(201).json({
       success: true,
       message: "Thank you for your feedback!",
       data: {
         id: result.insertId,
         name,
         email,
-        message
-      }
+        message,
+      },
     });
   });
 });
 
+// LRES STATISTICS
 
-
-
-
-
-
-
-// SERVICES fetching
-
-app.get("/LresServices", (req, res) => {
-  const q = "SELECT * FROM lresservices_tbl ORDER by service_name ASC" ;
-
-  db.query(q, (err, results) => {
-    if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({ error: "Database query error" });
-    }
-
-    res.status(200).json(results);
-  });
-});
-
-// ACHIEVEMENTS SECTION
-app.get("/Achievements", (req, res) => {
-  const query = `
+app.get("/lres", (req, res) => {
+  const sql = `
     SELECT 
-      id,
-      title,
-      achievements AS description,
-      date_achieved AS date,
-      image_url AS imageUrl
-    FROM achievement_tbl
-    ORDER BY date_achieved DESC
+      YEAR(date_time) AS year, 
+      category, 
+      COUNT(*) AS count 
+    FROM lresstatistics_tbl
+    GROUP BY YEAR(date_time), category
+    ORDER BY year DESC, category;
   `;
 
-  db.query(query, (err, results) => {
+  db.query(sql, (err, results) => {
     if (err) {
-      console.error("Database error:", err);
-      return res.status(500).json({ error: "Failed to load achievements" });
+      console.error("DB error:", err);
+      return res.status(500).json({ error: "Database query failed" });
     }
+
+    // Create a map to organize data by year
+    const yearMap = new Map();
     
-    // Return empty array if no results
-    res.json(results || []);
+    results.forEach(row => {
+      const year = row.year;
+      const category = row.category.toLowerCase();
+      const count = row.count;
+      
+      if (!yearMap.has(year)) {
+        yearMap.set(year, {
+          year: year,
+          medical: 0,
+          industrial: 0,
+          commercial: 0,
+          total: 0
+        });
+      }
+      
+      const yearData = yearMap.get(year);
+      
+      switch(category) {
+        case 'medical':
+          yearData.medical = count;
+          break;
+        case 'industrial':
+          yearData.industrial = count;
+          break;
+        case 'commercial':
+          yearData.commercial = count;
+          break;
+      }
+      
+      // Update total
+      yearData.total = yearData.medical + yearData.industrial + yearData.commercial;
+    });
+
+    // Convert map to array
+    const stats = Array.from(yearMap.values()).sort((a, b) => b.year - a.year);
+    
+    res.json(stats);
   });
 });
+// SERVICES fetching
+
+app.get("/lres", (req, res) => {
+  const sql = `
+    SELECT 
+      year,
+      COUNT(*) as total,
+      SUM(CASE WHEN category = 'medical' THEN 1 ELSE 0 END) as medical,
+      SUM(CASE WHEN category = 'industrial' THEN 1 ELSE 0 END) as industrial,
+      SUM(CASE WHEN category = 'commercial' THEN 1 ELSE 0 END) as commercial
+    FROM lresstatistics_tbl
+    GROUP BY year
+    ORDER BY year DESC;
+  `;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("DB error:", err);
+      return res.status(500).json({ error: "Database query failed" });
+    }
+    res.json(results);
+  });
+});
+
+
+
 
 
 // FEEDBACK
@@ -182,8 +228,6 @@ app.post("/Contacts", (req, res) => {
     res.status(200).json({ message: "Feedback submitted successfully" });
   });
 });
-
-
 
 //Regulations
 app.get("/Regulations", (req, res) => {

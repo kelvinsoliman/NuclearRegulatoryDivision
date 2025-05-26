@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LresNavbar from "./IesNavbar";
 import logo1 from "../../assets/placeholder.jpg"; 
-import logo2 from "../../assets/foi_logo.png";
-import logo3 from "../../assets/INSO_Thumbnail.png";
-import logo4 from "../../assets/AEW52_Thumbnail.png";
-import LresHero from "./IesHero";
-import LresFooter from "./IesFooter";
-import LresRating from "./IesRating";
 import Inspection from "../../assets/inspection.jpg"
 import Enforcement from "../../assets/enforcement.jpg"
 import { Link, useHref } from "react-router-dom";
+import IesHero from "./IesHero";
+import IesNavbar from "./IesNavbar";
+import IesFooter from "./IesFooter";
+import Header from "../Homepage/Header";
 
 const Ies = () => {
   useEffect(() => {
@@ -92,29 +89,19 @@ const Ies = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
-      {/* HERO */}
-      <LresHero />
 
-      {/* NAVBAR */}
-      <LresNavbar />
+      <Header/>
+      <IesHero/>
+      <IesNavbar/>
+      
 
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
-        {/* Left Section (Logos) */}
         <div
           className="flex flex-wrap md:flex-col items-center justify-center md:w-1/3 gap-4"
           data-aos="fade-right"
         >
 
-          {/* {images.map((img, index) => (
-            <img
-              key={index}  // Important: Add a unique key for each item in a list
-              src={img.img1}  // Changed from img1.logo1 to img.logo1
-              alt={`Logo ${index + 1}`}  // Better alt text
-              className="h-20 w-20 md:h-30 md:w-30"
-            />
-            
-          ))} */}
           <img
             src={logo1}
             alt="Logo 1"
@@ -170,7 +157,7 @@ const Ies = () => {
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
-            Core Responsibilities
+            Core Function
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
             {responsibilities.map((item, index) => (
@@ -216,7 +203,7 @@ const Ies = () => {
       </section> 
 
       {/* Footer */}
-      <LresFooter />
+      <IesFooter />
     </div>
   );
 };

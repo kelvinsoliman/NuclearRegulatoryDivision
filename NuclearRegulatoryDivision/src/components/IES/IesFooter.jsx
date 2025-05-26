@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Footer = () => {
+const IesFooter = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
   }, []);
@@ -61,4 +61,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default IesFooter;

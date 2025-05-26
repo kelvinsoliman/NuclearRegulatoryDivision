@@ -8,6 +8,7 @@ import logo4 from "../../assets/AEW52_Thumbnail.png";
 import RSDSNavbar from "./RSDSNavbar";
 import RSDSHeroSection from "./RSDSHeroSection";
 import RSDSFooter from "./RSDSFooter";
+import Header from "../Homepage/Header";
 
 const Rsds = () => {
   useEffect(() => {
@@ -75,6 +76,8 @@ const Rsds = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
+
+      <Header/>
       {/* HERO */}
       <RSDSHeroSection />
 
@@ -129,7 +132,7 @@ const Rsds = () => {
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
-            Core Responsibilities
+            Core Function
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
             {responsibilities.map((item, index) => (

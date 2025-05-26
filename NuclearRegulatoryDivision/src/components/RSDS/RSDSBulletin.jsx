@@ -6,6 +6,7 @@ import RSDSNavbar from "./RSDSNavbar";
 import img1 from "../../assets/placeholder.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Header from "../Homepage/Header";
 
 const RSDSBulletin = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -41,6 +42,7 @@ const RSDSBulletin = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
+      <Header/>
       <RSDSHeroSection />
       <RSDSNavbar />
 

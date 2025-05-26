@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import LresNavbar from "./LresNavbar";
 import LresHero from "./LresHero";
 import LresFooter from "./LresFooter";
+import Header from "../Homepage/Header";
 
 const Achievements = () => {
   const [achievements, setAchievements] = useState([]);
@@ -87,6 +88,7 @@ const Achievements = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header/>
       <LresHero />
       <LresNavbar />
 

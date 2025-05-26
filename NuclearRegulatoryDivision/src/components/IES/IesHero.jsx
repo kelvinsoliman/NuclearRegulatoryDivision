@@ -2,7 +2,7 @@ import React from "react";
 import backgroundImage from "../../assets/PNRI_2.jpg";
 
 
-const LresHero = () => {
+const IesHero = () => {
   return (
     <header
       className="relative bg-cover z-0 bg-center h-[400px] flex items-center justify-center text-center text-white mt-16"
@@ -22,4 +22,4 @@ const LresHero = () => {
   );
 };
 
-export default LresHero;
+export default IesHero;

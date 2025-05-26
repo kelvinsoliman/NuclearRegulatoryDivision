@@ -8,6 +8,7 @@ import logo1 from "../../assets/BP-LOGO-BT.png";
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
+import Header from "../Homepage/Header";
 
 const LicensingApplication = () => {
   const [appList, setApplist] = useState([]);
@@ -56,6 +57,7 @@ const LicensingApplication = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
+      <Header/>
       <LresHero />
       <LresNavbar />
 

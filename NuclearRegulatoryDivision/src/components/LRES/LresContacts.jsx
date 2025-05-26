@@ -5,6 +5,7 @@ import LresNavbar from "./LresNavbar";
 import LresHero from "./LresHero";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Header from "../Homepage/Header";
 
 const LresContacts = () => {
   useEffect(() => {
@@ -40,6 +41,7 @@ const LresContacts = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header/>
       <LresHero />
       <LresNavbar />
 

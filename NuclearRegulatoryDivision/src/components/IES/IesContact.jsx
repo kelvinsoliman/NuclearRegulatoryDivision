@@ -14,6 +14,9 @@ import Enforcement from "../../assets/enforcement.jpg";
 import { Link, useHref } from "react-router-dom";
 import React from "react";
 import { FaLinkedin } from "react-icons/fa";
+import IesHero from "./IesHero";
+import IesNavbar from "./IesNavbar";
+import Header from "../Homepage/Header";
 
 const IesContact = () => {
   useEffect(() => {
@@ -37,11 +40,13 @@ const IesContact = () => {
 
   return (
     <div className="bg-gray-100 text-gray-900">
+      <Header/>
+      
       {/* HERO */}
-      <LresHero />
+      <IesHero />
 
       {/* NAVBAR */}
-      <LresNavbar />
+      <IesNavbar />
 
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">

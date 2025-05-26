@@ -3,7 +3,7 @@ import logo from "../../assets/PNRI_Logo.jpg";
 import { Link } from "react-router-dom";
 
 
-const Navbar = () => {
+const IesNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDoubleDropdownOpen, setIsDoubleDropdownOpen] = useState(false);
@@ -71,4 +71,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default IesNavbar;
