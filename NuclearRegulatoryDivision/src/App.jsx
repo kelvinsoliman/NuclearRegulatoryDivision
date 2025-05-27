@@ -43,6 +43,7 @@ import RsdsContact from "./components/RSDS/RsdsContact";
 import IesContact from "./components/IES/IesContact";
 import LresContacts from "./components/LRES/LresContacts";
 import Header from "./components/Homepage/Header";
+import RIASContacts from "./components/RIAS/RIASContacts";
 
 function App() {
   return (
@@ -69,7 +70,7 @@ function MainLayout() {
               <Header />
               <HeroSection />
               <InteractSection />
-              {/* <DivisionHeads /> */}
+              <DivisionHeads />
               <VisitUs />
             </>
           }
@@ -99,6 +100,7 @@ function MainLayout() {
         <Route path="/IesComplaint" element={<IesComplaint />} />
         <Route path="/RsdsContact" element={<RsdsContact />} />
         <Route path="/IesContact" element={<IesContact />} />
+        <Route path="/RIASContacts" element={<RIASContacts />} />
 
         {/* <Route path="/permit" element={ <Permit/>}/>
           <Route path="/complaint" element={<Complaint/>}/>

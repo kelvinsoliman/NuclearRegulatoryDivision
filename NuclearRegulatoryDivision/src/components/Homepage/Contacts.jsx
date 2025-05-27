@@ -101,9 +101,9 @@ const Contacts = () => {
                 </div>
 
                 <div className="pt-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">
                     Our Partners
-                  </h3>
+                  </h3> */}
                   <div className="grid grid-cols-2 gap-4">
                     {[logo1, logo1, logo1, logo1].map((logo, index) => (
                       <div
@@ -200,7 +200,7 @@ const Contacts = () => {
                     required
                   ></textarea>
                 </div>
-
+                    
                 <button
                   type="submit"
                   disabled={loading}

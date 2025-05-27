@@ -2,7 +2,6 @@ import { useState } from "react";
 import logo from "../../assets/PNRI_Logo.jpg";
 import { Link } from "react-router-dom";
 
-
 const IesNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,7 +10,10 @@ const IesNavbar = () => {
   return (
     <nav className="bg-white border-gray-200 shadow-xl ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center justify-between space-x-3 rtl:space-x-reverse ">
+        <a
+          href="#"
+          className="flex items-center justify-between space-x-3 rtl:space-x-reverse "
+        >
           <img src={logo} className="h-10 w-15 rounded-full" alt="PNRI Logo" />
           <span className="hidden lg:block self-center text-xl lg:text-2xl font-semibold whitespace-nowrap text-black ">
             Inspection and Enforcement
@@ -44,6 +46,72 @@ const IesNavbar = () => {
           } w-full md:block md:w-auto`}
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+            <li className="relative hover:bg-slate-200  rounded-xl">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black md:hover:text-blue-700 "
+              >
+                Home
+                <svg
+                  className="w-2.5 h-2.5 ml-2"
+                  viewBox="0 0 10 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <ul className="absolute z-50 left-0 mt-1 w-44 bg-white shadow-md rounded-lg py-2">
+                   <li>
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-black hover:bg-gray-300"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/Rsds"
+                      className="block px-4 py-2 text-black hover:bg-gray-300"
+                    >
+                      RSDS
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/Lres"
+                      className="block px-4 py-2 text-black hover:bg-gray-300"
+                    >
+                      LRES
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/Nsss"
+                      className="block px-4 py-2 text-black hover:bg-gray-300"
+                    >
+                      NSSS
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/Rias"
+                      className="block px-4 py-2 text-black hover:bg-gray-300"
+                    >
+                      RIAS
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
             <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
               <Link
                 to="/ies"
@@ -52,18 +120,17 @@ const IesNavbar = () => {
                 Home
               </Link>
             </li>
-            
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/IesContact"
-                className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
-              >
-                Contact Us
-              </Link>
-            </li>
-             </ul>
 
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+              <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+                <Link
+                  to="/IesContact"
+                  className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
+                >
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
           </ul>
         </div>
       </div>

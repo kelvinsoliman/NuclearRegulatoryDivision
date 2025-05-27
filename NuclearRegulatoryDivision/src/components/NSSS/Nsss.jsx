@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/placeholder.jpg"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
@@ -61,7 +61,8 @@ const Nsss = () => {
       icon: "🛡️",
     },
     {
-      title: "Coordinates and oversees the implementation of foreign-assisted projects",
+      title:
+        "Coordinates and oversees the implementation of foreign-assisted projects",
       description:
         "NSSS also coordinates and oversees the implementation of foreign-assisted projects focused on nuclear security. These projects strengthen the security frameworks of countries worldwide by providing assistance, expertise, and resources to enhance nuclear security capabilities and address emerging challenges. Through collaboration and knowledge-sharing, NSSS contributes to a safer, more secure nuclear landscape on a global scale.",
       icon: "✅",
@@ -90,28 +91,24 @@ const Nsss = () => {
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo2}
-            alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo3}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
-          />
-          <img
-            src={logo4}
-            alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
             src={logo1}
-            alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            alt="Logo 2"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
+          <img
+            src={logo1}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 "
+          />
+          <img
+            src={logo1}
+            alt="Logo 3"
+            className="h-20 w-20 md:h-30 md:w-30 "
+          />
+          <img src={logo1} alt="Logo 1" className="h-20 w-20 md:h-30 md:w-30" />
           {/* <img
             src={logo2}
             alt="Logo 2"
@@ -168,6 +165,67 @@ const Nsss = () => {
           </div>
         </div>
       </section>
+      {/* Statistics Section */}
+      <section className="container mx-auto px-4 py-12 bg-white">
+        <div className="space-y-12">
+          {/* Section Title */}
+          <h2
+            className="text-3xl md:text-4xl font-bold text-indigo-600 text-center"
+            data-aos="fade-down"
+          >
+            Statistics
+          </h2>
+
+          {/* Statistics Grid */}
+          <div
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            data-aos="fade-up"
+          >
+            {/* RAM License */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Issued RAM License */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="RAM license statistics"
+                />
+              </div>
+            </div>
+
+            {/* Certificates of Release */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Certificates of Release */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="Certificates statistics"
+                />
+              </div>
+            </div>
+
+            {/* Number of Licenses */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Number of Licenses */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="License count statistics"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <NSSSFooter />
     </div>

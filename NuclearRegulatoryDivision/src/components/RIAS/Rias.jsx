@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo1 from "../../assets/BP-LOGO-BT.png"; // Add multiple logo imports
+import logo1 from "../../assets/placeholder.jpg"; // Add multiple logo imports
 import logo2 from "../../assets/foi_logo.png";
 import logo3 from "../../assets/INSO_Thumbnail.png";
 import logo4 from "../../assets/AEW52_Thumbnail.png";
 import RIASFooter from "./RIASFooter";
 import RIASHero from "./RIASHero";
 import RIASNavbar from "./RIASNavbar";
+import Header from "../Homepage/Header";
 
 const Rias = () => {
   useEffect(() => {
@@ -49,37 +50,38 @@ const Rias = () => {
 
   const responsibilities = [
     {
-      title: "License Application Review",
+      title: "Coordinates emergency preparedness and response activities",
       description:
-        "Evaluating applications for nuclear materials, ensuring compliance with national and international safety standards.",
+        "RIAS takes the initiative to coordinate comprehensive planning and preparedness activities for responding to radiological and nuclear emergencies. Additionally, it establishes and continuously updates training programs to ensure that members of the radiological emergency response teams are well-equipped and trained.",
       icon: "📄",
     },
     {
-      title: "Safety Assessments",
+      title: "Conducts regulatory research",
       description:
-        "Conducting safety and risk assessments for nuclear-related activities and facilities.",
+        "RIAS engages in essential regulatory research within the fields of radioecology, radioactive waste safety, and health physics. This research is vital for supporting the various functions of the NRD. Also, RIAS conducts radiological impact assessments of radiation facilities and operations, providing thoughtful recommendations, as appropriate.",
       icon: "🛡️",
     },
     {
-      title: "Regulatory Compliance",
+      title: "Conducts hazard assessment and radiological dispersion modeling",
       description:
-        "Ensuring all nuclear-related operations adhere to PNRI's licensing requirements and regulations.",
+        "RIAS is committed to maintaining the technical capability necessary to perform computer modeling and software operationalization for safety and radiological impact assessments. This capability is vital for informed decision-making and enhancing overall safety measures.",
       icon: "✅",
     },
-    {
-      title: "Technical Evaluations",
-      description:
-        "Reviewing technical documentation to validate the safety of nuclear applications.",
-      icon: "📊",
-    },
+    // {
+    //   title: "Technical Evaluations",
+    //   description:
+    //     "Reviewing technical documentation to validate the safety of nuclear applications.",
+    //   icon: "📊",
+    // },
   ];
 
   return (
     <div className="bg-gray-100 text-gray-900">
+      <Header/>
       {/* HERO */}
       <RIASHero />
       {/* NAVBAR */}
-      <RIASNavbar/> 
+      <RIASNavbar />
       {/* Main Content with Logos and Text */}
       <section className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center md:items-start gap-10">
         {/* Left Section (Logos) */}
@@ -90,27 +92,27 @@ const Rias = () => {
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo2}
+            src={logo1}
             alt="Logo 2"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo3}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           <img
-            src={logo4}
+            src={logo1}
             alt="Logo 3"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30"
           />
           <img
             src={logo1}
             alt="Logo 1"
-            className="h-20 w-20 md:h-30 md:w-30 rounded-full"
+            className="h-20 w-20 md:h-30 md:w-30 "
           />
           {/* <img
             src={logo2}
@@ -135,10 +137,12 @@ const Rias = () => {
             About RIAS
           </h2>
           <p className="text-gray-700 text-lg mt-4">
-            RIAS implements regulatory research and studies in support of the
-            various regulatory functions of the Nuclear Regulatory Division as
-            well as plans and coordinates the nuclear and radiological emergency
-            preparedness and response activities.
+            The Regulatory Impact Assessment Section (RIAS) is dedicated to the
+            thoughtful planning, management, and implementation of regulatory
+            research and studies that support various regulatory functions of
+            the Nuclear Regulatory Division (NRD). This includes a committed
+            focus on planning and preparedness activities for effective
+            responses to radiological emergencies.
           </p>
           {/* Responsibilities Section */}
           <h2 className="text-4xl font-bold text-indigo-600 text-center md:text-left mt-10">
@@ -164,6 +168,66 @@ const Rias = () => {
           </div>
         </div>
       </section>
+      <section className="container mx-auto px-4 py-12 bg-white">
+        <div className="space-y-12">
+          {/* Section Title */}
+          <h2
+            className="text-3xl md:text-4xl font-bold text-indigo-600 text-center"
+            data-aos="fade-down"
+          >
+            Statistics
+          </h2>
+
+          {/* Statistics Grid */}
+          <div
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            data-aos="fade-up"
+          >
+            {/* RAM License */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Issued RAM License */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="RAM license statistics"
+                />
+              </div>
+            </div>
+
+            {/* Certificates of Release */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Certificates of Release */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="Certificates statistics"
+                />
+              </div>
+            </div>
+
+            {/* Number of Licenses */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Number of Licenses */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="License count statistics"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <RIASFooter />
     </div>

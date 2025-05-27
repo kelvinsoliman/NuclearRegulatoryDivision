@@ -75,7 +75,7 @@ const LresContacts = () => {
             </div>
           ))}
         </div>
-
+          
         <div className="mt-12 bg-white p-6 rounded-lg shadow-sm border border-gray-100" data-aos="fade-up">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">LRES Office Location</h2>
           <div className="flex flex-col sm:flex-row gap-6">

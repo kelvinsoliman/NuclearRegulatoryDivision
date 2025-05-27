@@ -66,7 +66,7 @@ const NSSSFooter = () => {
             <ul className="space-y-2 text-gray-400">
               <li>PNRI Building, Commonwealth Avenue</li>
               <li>Diliman, Quezon City, Philippines</li>
-              <li>Email: lres@pnri.gov.ph</li>
+              <li>Email: nsss@pnri.gov.ph</li>
               <li>Phone: +63 2 123 4567</li>
             </ul>
           </div>

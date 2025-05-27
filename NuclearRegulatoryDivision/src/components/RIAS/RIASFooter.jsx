@@ -15,11 +15,12 @@ const RIASFooter = () => {
           <div className="space-y-4" data-aos="fade-right" data-aos-delay="200">
             <h3 className="text-xl font-bold text-blue-500">About Us</h3>
             <p className="text-gray-400">
-              NSSS coordinates and carries out inspections in support of
-              international nuclear safeguards commitment and the physical
-              protection of nuclear and other radioactive materials and
-              facilities, and coordinates the implementation of foreign-assisted
-              projects on nuclear security.
+              The Regulatory Impact Assessment Section (RIAS) is dedicated to
+              the thoughtful planning, management, and implementation of
+              regulatory research and studies that support various regulatory
+              functions of the Nuclear Regulatory Division (NRD). This includes
+              a committed focus on planning and preparedness activities for
+              effective responses to radiological emergencies.
             </p>
           </div>
 
@@ -66,7 +67,7 @@ const RIASFooter = () => {
             <ul className="space-y-2 text-gray-400">
               <li>PNRI Building, Commonwealth Avenue</li>
               <li>Diliman, Quezon City, Philippines</li>
-              <li>Email: lres@pnri.gov.ph</li>
+              <li>Email: rias@pnri.gov.ph</li>
               <li>Phone: +63 2 123 4567</li>
             </ul>
           </div>

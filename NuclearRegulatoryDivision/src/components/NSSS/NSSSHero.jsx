@@ -13,8 +13,9 @@ const NSSSHero = () => {
           Nuclear Safeguards and Security
         </h1>
         <p className="text-lg mt-4 max-w-3xl mx-auto">
-          Ensuring nuclear safety through rigorous licensing and review
-          processes.
+          coordinates and carries out inspections in support of international
+          nuclear safeguards commitment and the physical protection of nuclear
+          and other radioactive materials and facilities
         </p>
       </div>
     </header>

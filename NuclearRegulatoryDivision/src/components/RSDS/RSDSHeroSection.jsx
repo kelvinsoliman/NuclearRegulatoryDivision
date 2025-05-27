@@ -10,11 +10,12 @@ const RSDSHeroSection = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative p-10" data-aos="fade-up">
         <h1 className="text-5xl font-extrabold">
-          Regulations and Standards Development
+          Regulations and Standards Development(RSDS)
         </h1>
         <p className="text-lg mt-4 max-w-3xl mx-auto">
-          Ensuring nuclear safety through rigorous licensing and review
-          processes.
+          formulates nuclear safety policy, develops and establishes
+          nuclear regulations, guides and criteria consistent with
+          internationally acceptable guidelines and best practices.
         </p>
       </div>
     </header>

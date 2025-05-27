@@ -154,6 +154,63 @@ const Rsds = () => {
           </div>
         </div>
       </section>
+
+            {/* Statistics Section */}
+            <section className="container mx-auto px-4 py-12 bg-white">
+        <div className="space-y-12">
+          {/* Section Title */}
+          <h2
+            className="text-3xl md:text-4xl font-bold text-indigo-600 text-center"
+            data-aos="fade-down"
+          >
+             Statistics
+          </h2>
+
+          <div
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            data-aos="fade-up"
+          >
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="RAM license statistics"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="Certificates statistics"
+                />
+              </div>
+            </div>
+
+            {/* Number of Licenses */}
+            <div className="space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
+                {/* Number of Licenses */}
+              </h3>
+              <div className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 h-full">
+                <img
+                  className="w-full h-auto max-h-[300px] object-contain rounded-md"
+                  src={logo1}
+                  alt="License count statistics"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <RSDSFooter />
     </div>

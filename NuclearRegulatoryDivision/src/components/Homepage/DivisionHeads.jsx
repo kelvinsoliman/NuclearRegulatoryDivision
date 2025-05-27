@@ -1,42 +1,71 @@
 import React from "react";
-import img1 from "../../assets/worker.png";
+import img1 from "../../assets/placeholder.jpg";
 import img2 from "../../assets/worker.png";
 import img3 from "../../assets/worker.png";
 
 const DivisionHeads = () => {
-  const nuclearDivisionHeads = [
-    { name: "sample name", image: img1, position: "Head" },
-    { name: "sample name", image: img2, position: "Head" },
-    { name: "sample name", image: img3, position: "Head" },
+  const articles = [
+    {
+      title: "Registration for the 2nd PH Nuclear Science Olympiad is now open!",
+      link: "https://www.pnri.dost.gov.ph/index.php/2-uncategorised/830-registration-for-the-2nd-ph-nuclear-science-olympiad-is-now-open",
+      image: img1,
+      content: [
+        "The Department of Science and Technology – Philippine Nuclear Research Institute (DOST-PNRI) is calling Filipino secondary students aged 15–20 from private and public schools across the country to register for the 2nd Philippine Nuclear Science Olympiad (PNSO), to be held this April 03, 2025.",
+        "This nationwide competition aims to identify and train the next generation of Filipino nuclear scientists and provide them with an opportunity to represent the Philippines at the 2nd International Nuclear Science Olympiad (INSO) in Malaysia this July 2025.",
+        "Registration is open until 07 March 2025.",
+      ],
+    },
+    // Add more articles here if needed
   ];
 
   return (
-    <div>
-      {/* Organizational Chart */}
-      <section className="container mx-auto px-6 py-16">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Nuclear Regulatory Division Heads
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {nuclearDivisionHeads.map((head, index) => (
-            <div
+    <div className="bg-gray-50 py-12">
+      <div className="container mx-auto px-6">
+        <div className="space-y-8">
+          {articles.map((article, index) => (
+            <article
               key={index}
-              className="bg-white p-4 rounded-lg shadow-md text-center"
-            >f
-              <img
-                src={head.image}
-                alt={head.name}
-                className="w-32 h-32 mx-auto rounded-full mb-3"
-              />
-              <p className="font-bold">{head.name}</p>
-              <p className="font-semi">{head.position}</p>
-
-            </div>
+              className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className="md:flex">
+                <div className="md:flex-shrink-0 md:w-1/3">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 md:h-full object-cover"
+                  />
+                </div>
+                <div className="p-6 md:p-8">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
+                    <a href={article.link} target="_blank" rel="noopener noreferrer">
+                      {article.title}
+                    </a>
+                  </h2>
+                  <div className="prose prose-blue text-gray-600 space-y-4">
+                    {article.content.map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <a
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                  >
+                    Read more
+                  </a>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 };
+
+
 
 export default DivisionHeads;

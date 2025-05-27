@@ -1,7 +1,6 @@
 import React from "react";
 import backgroundImage from "../../assets/PNRI_2.jpg";
 
-
 const IesHero = () => {
   return (
     <header
@@ -14,8 +13,9 @@ const IesHero = () => {
           Inspection and Enforcement Section
         </h1>
         <p className="text-lg mt-4 max-w-3xl mx-auto">
-          {/* Ensuring nuclear safety through rigorous licensing and review
-          processes.*/}
+          IES conducts inspection and enforcement activities/actions of licensed
+          radioactive materials and atomic energy facilities to ensure
+          compliance with regulatory requirements and licensees’ commitments.
         </p>
       </div>
     </header>

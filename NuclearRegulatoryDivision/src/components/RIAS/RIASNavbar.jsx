@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 const RIASNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDoubleDropdownOpen, setIsDoubleDropdownOpen] = useState(false);
+  const [isActivitiesOpen, setIsActivitiesOpen] = useState(false);
+  const [isRadEmergencyOpen, setIsRadEmergencyOpen] = useState(false);
+  const [isRadMonitoringOpen, setIsRadMonitoringOpen] = useState(false);
+  const [isHazardAssessmentOpen, setIsHazardAssessmentOpen] = useState(false);
 
   return (
     <nav className="bg-white border-gray-200 shadow-xl ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto   p-4">
         <a
           href="#"
           className="flex items-center justify-between space-x-3 rtl:space-x-reverse "
         >
           <img src={logo} className="h-10 w-10 rounded-full" alt="PNRI Logo" />
-          <span className="hidden lg:block self-center text-xl lg:text-2xl font-semibold whitespace-nowrap text-black ">
+          <span className="hidden lg:block self-center text-xl lg:text-xl font-semibold whitespace-nowrap text-black ">
             Radiological Impact Assessment
           </span>
         </a>
@@ -45,56 +48,46 @@ const RIASNavbar = () => {
             isMenuOpen ? "block" : "hidden"
           } w-full md:block md:w-auto`}
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/Rsds"
-                className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0 "
-              >
-                Home
-              </Link>
-            </li>
-
-            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/Regulations"
-                className="block py-2 px-3 text-black bg-blue-700 rounded-sm md:bg-transparent md:p-0"
-              >
-                Regulations
-              </Link>
-            </li>
-            <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/LresServices"
-                className="block py-2 px-3 text-black rounded-sm md:p-0"
-              >
-                Services
-              </Link>
-            </li>
-            {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/ReviewEvaluation"
-                className="block py-2 px-3 text-black rounded-sm md:p-0"
-              >
-                Review & Evaluation
-              </Link>
-            </li>*/}
-
-            {/* <li className="hover:bg-slate-200 hover:text-white p-2 ease-in-out duration-500 hover:rounded-xl">
-              <Link
-                to="/LresStaffs"
-                className="block py-2 px-3 text-black rounded-sm md:p-0"
-              >
-                Team Members
-              </Link>
-            </li> */}
-
-            {/* <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl ">
+          <ul className="flex flex-col font-medium text-sm p-4 md:p-0 mt-4 border  md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+            
+            <li className="relative hover:bg-slate-200 rounded-xl">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center justify-between w-full py-2 px-3 text-black hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto  md:dark:hover:text-blue-500 dark:focus:text-white"
+                className="flex items-center justify-between w-full py-2 px-3 text-black md:hover:text-blue-700"
               >
-                See More
+                Home
+                <svg className="w-2.5 h-2.5 ml-2" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <ul className="absolute z-50 left-0 mt-1 w-44 bg-white shadow-md rounded-lg py-2">
+                  <li>
+                    <Link to="/" className="block px-4 py-2 text-black hover:bg-gray-300">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/Rsds" className="block px-4 py-2 text-black hover:bg-gray-300">RSDS</Link>
+                  </li>
+                  <li>
+                    <Link to="/Ies" className="block px-4 py-2 text-black hover:bg-gray-300">IES</Link>
+                  </li>
+                  <li>
+                    <Link to="/Nsss" className="block px-4 py-2 text-black hover:bg-gray-300">NSSS</Link>
+                  </li>
+                  <li>
+                    <Link to="/Lres" className="block px-4 py-2 text-black hover:bg-gray-300">LRES</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+
+            {/* ACTIVITIES */}
+            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <button
+                onClick={() => setIsActivitiesOpen(!isActivitiesOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Activities
                 <svg
                   className="w-2.5 h-2.5 ms-2.5"
                   aria-hidden="true"
@@ -111,68 +104,129 @@ const RIASNavbar = () => {
                   />
                 </svg>
               </button>
-              {isDropdownOpen && (
-                <div className="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 ">
-                  <ul className="py-2 text-sm text-black">
-                    <li className="hover:bg-gray-300">
-                      <a href="#" className="block px-4 py-2 ">
-                        Dashboard
-                      </a>
-                    </li>
-                    <li className="relative">
-                      <button
-                        onClick={() =>
-                          setIsDoubleDropdownOpen(!isDoubleDropdownOpen)
-                        }
-                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-300"
-                      >
-                        More
-                        <svg
-                          className="w-2.5 h-2.5 ms-2.5"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 10 6"
-                        >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m1 1 4 4 4-4"
-                          />
-                        </svg>
-                      </button>
-                      {isDoubleDropdownOpen && (
-                        <ul className="absolute left-full top-0 z-10 w-44 bg-white shadow-md rounded-lg py-2">
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-black hover:bg-gray-300"
-                            >
-                              Overview
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-black hover:bg-gray-300"
-                            >
-                              My Downloads
-                            </a>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                    <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-300">
-                        Earnings
-                      </a>
-                    </li>
-                  </ul>
+              {isActivitiesOpen && (
+                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <div className="px-4 py-2 text-sm text-gray-700">
+                    Content by month
+                  </div>
                 </div>
               )}
-            </li> */}
+            </li>
+
+            {/* RADIATION EMERGENCY */}
+            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <button
+                onClick={() => setIsRadEmergencyOpen(!isRadEmergencyOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Radiation Emergency
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {isRadEmergencyOpen && (
+                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <Link
+                    to="/RADPLAN"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Radplan
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* RADIATION MONITORING */}
+            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <button
+                onClick={() => setIsRadMonitoringOpen(!isRadMonitoringOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Radiation Monitoring
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {isRadMonitoringOpen && (
+                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <Link
+                    to="/ARGUS"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    ARGUS
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* HAZARD ASSESSMENT */}
+            <li className="relative hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <button
+                onClick={() => setIsHazardAssessmentOpen(!isHazardAssessmentOpen)}
+                className="flex items-center justify-between w-full py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Hazard Assessment
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              {isHazardAssessmentOpen && (
+                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <Link
+                    to="/JRODOS"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    JRODOS
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* CONTACT US */}
+            <li className="hover:bg-slate-200 p-2 ease-in-out duration-500 hover:rounded-xl">
+              <Link
+                to="/RIASContacts"
+                className="block py-2 px-3 text-black rounded-sm md:p-0"
+              >
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

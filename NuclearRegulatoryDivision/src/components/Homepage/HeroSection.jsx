@@ -27,7 +27,7 @@ const HeroSection = () => {
       {/* Text Content */}
       <div className="absolute inset-9 flex flex-col md:flex-row m-auto">
         <div className="md:w-1/2 mb-4 md:mb-0 text-white text-center md:text-left">
-          <h1 className="font-medium text-2xl md:text-3xl lg:mt-44 md:mt-36 leading-tight mb-2 mt-20">
+          <h1 className="font-medium text-3xl md:text-5xl lg:mt-44 md:mt-36 leading-tight mb-2 mt-20">
             Nuclear Regulatory Division
           </h1>
           <p className="text-sm text-center md:text-lg md:text-left mb-8 mt-4 lowercase">

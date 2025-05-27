@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="flex items-center justify-center gap-2.5">
         <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
         <a
-          href="https://www.pnri.dost.gov.ph/"
+          href="https://www.pnri.dost.gov.ph/index.php"
           className="font-bold text-white text-2xl hidden md:block"
         >
           Nuclear Regulatory Division
@@ -30,10 +30,10 @@ const Navbar = () => {
 
       <ul className="hidden md:flex gap-2.5">
         <li className="p-4 hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <Link to="https://www.pnri.dost.gov.ph/" target="_blank">Home</Link>
+          <Link to="https://www.pnri.dost.gov.ph/" target="_blank">PNRI</Link>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
-          <Link to="/">About</Link>
+          <Link to="/">Home</Link>
         </li>
         <li className="p-4 hover:hover:bg-slate-700 rounded-md ease-in-out duration-500">
           <Link to="/Activities">Activities</Link>
