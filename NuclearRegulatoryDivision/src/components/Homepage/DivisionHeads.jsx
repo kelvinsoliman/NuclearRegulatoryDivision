@@ -1,7 +1,6 @@
 import React from "react";
 import img1 from "../../assets/placeholder.jpg";
-import img2 from "../../assets/worker.png";
-import img3 from "../../assets/worker.png";
+
 
 const DivisionHeads = () => {
   const articles = [
@@ -36,6 +35,7 @@ const DivisionHeads = () => {
                     alt={article.title}
                     className="w-full h-48 md:h-full object-cover"
                   />
+
                 </div>
                 <div className="p-6 md:p-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
@@ -48,16 +48,18 @@ const DivisionHeads = () => {
                       <p key={i}>{paragraph}</p>
                     ))}
                   </div>
+
                   <a
                     href={article.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                   >
-                    Read more
+                    Read more  
                   </a>
                 </div>
               </div>
+              
             </article>
           ))}
         </div>

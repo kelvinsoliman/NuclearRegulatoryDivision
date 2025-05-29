@@ -32,16 +32,16 @@ const pool = mysql.createPool(db);
 
 // Fetch all license applications
 
-app.get("/licensing", (req, res) => {
-  const query = "SELECT * FROM licenseapp_tbl";
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({ error: "Database query error" });
-    }
-    res.json(results);
-  });
-});
+// app.get("/licensing", (req, res) => {
+//   const query = "SELECT * FROM licenseapp_tbl";
+//   db.query(query, (err, results) => {
+//     if (err) {
+//       console.error("Database query error:", err);
+//       return res.status(500).json({ error: "Database query error" });
+//     }
+//     res.json(results);
+//   });
+// });
 
 // Admin AdminServices Fetch
 
@@ -179,31 +179,46 @@ app.get("/lres", (req, res) => {
     res.json(stats);
   });
 });
+
+
+
 // SERVICES fetching
 
-app.get("/lres", (req, res) => {
-  const sql = `
-    SELECT 
-      year,
-      COUNT(*) as total,
-      SUM(CASE WHEN category = 'medical' THEN 1 ELSE 0 END) as medical,
-      SUM(CASE WHEN category = 'industrial' THEN 1 ELSE 0 END) as industrial,
-      SUM(CASE WHEN category = 'commercial' THEN 1 ELSE 0 END) as commercial
-    FROM lresstatistics_tbl
-    GROUP BY year
-    ORDER BY year DESC;
-  `;
+app.get("/LresServices", (req, res) => {
+  const q = "SELECT * FROM lresservices_tbl ORDER by service_name ASC" ;
 
-  db.query(sql, (err, results) => {
+  db.query(q, (err, results) => {
     if (err) {
-      console.error("DB error:", err);
-      return res.status(500).json({ error: "Database query failed" });
+      console.error("Database query error:", err);
+      return res.status(500).json({ error: "Database query error" });
     }
-    res.json(results);
+
+    res.status(200).json(results);
   });
 });
 
+app.get("/Achievements", (req, res) => {
+  const query = `
+    SELECT 
+      id,
+      title,
+      achievements AS description,
+      date_achieved AS date,
+      image_url AS imageUrl
+    FROM achievement_tbl
+    ORDER BY date_achieved DESC
+  `;
 
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Database error:", err);
+      return res.status(500).json({ error: "Failed to load achievements" });
+    }
+    
+    // Return empty array if no results
+    res.json(results || []);
+  });
+});
 
 
 
